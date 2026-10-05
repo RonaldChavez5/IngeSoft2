@@ -1,0 +1,74 @@
+# Laboratorio L2: SOLID - Banco Andino
+
+Ingeniería de Software II · Universidad Nacional de Colombia, sede Bogotá · 2026.
+
+## Lenguaje y ejecución
+
+Python 3.12 o superior, solo biblioteca estándar. Se eligió porque permite ejecutar
+el programa y `unittest` sin instalar una base de datos ni librerías externas.
+
+```bash
+python main.py
+```
+
+La traducción conserva los 11 archivos y los defectos del original. `ValueError`
+equivale a argumento inválido; `RuntimeError`, a estado inválido; y
+`NotImplementedError`, al retiro no soportado del CDT. Los valores se convierten
+a `float` para conservar el modelo `double`. Se usan 183 días para representar
+el CDT futuro de la demostración; el día exacto no interviene en la salida.
+La caracterización compara el código Python original con su refactorización,
+no las convenciones de formato numérico de Java contra las de Python.
+
+## Bloque 0. Arranque
+
+La ejecución mueve $150.000 de Ana a Luis y cobra $7.500 de comisión. Luego
+cobra $12.900 a cada cuenta. Los saldos finales son $1.829.600 y $637.100.
+La salida original está en [salida_original.txt](salida_original.txt).
+
+## Bloque 1. Diagnóstico
+
+| Clase / método | Letra | Evidencia | Consecuencia para el banco o cliente |
+|---|---|---|---|
+| `TransaccionService.transferir` | S | Valida, calcula comisión, mueve dinero, guarda, imprime, notifica y audita. | Cambiar un comprobante obliga a tocar el mismo método que descuenta el dinero. |
+| `TransaccionService.transferir` | O | Cadena `if/elif` por tipo, equivalente al `switch` original. | Una modalidad nueva obliga a editar código de transferencias que ya estaba funcionando. |
+| `CDT.retirar` / `Cuenta` | L | La subclase añade el rechazo por vencimiento a una operación que la cuenta base permite con saldo suficiente. | El cobro nocturno puede detenerse al encontrar un CDT y dejar cuentas sin procesar. |
+| `ProductoBancario` | I | Obliga a todos los productos a ofrecer depósitos, retiros, intereses, pagos y extractos. | Se aceptan operaciones que no hacen nada: el cliente puede creer que movió dinero. |
+| `TarjetaCredito.depositar`, `CreditoVivienda.depositar/retirar` | I | Tres métodos vacíos por “no aplica”. | Los errores de uso quedan ocultos en vez de verse en el contrato del producto. |
+| `TransaccionService.__init__` | D | Construye `OracleRepositorio` y `SmsGateway` directamente. | Probar una comisión activa también persistencia y mensajería; migrar de proveedor exige modificar el servicio. |
+| `CobroCuotaManejo.cobrar_mensual` | L | Recibe cualquier `Cuenta`, incluidos los CDT. | El tipo de entrada promete una capacidad que algunos elementos no tienen. |
+
+### Experimento 1: incluir el CDT en el cobro
+
+Ejecución real: [experimento_cdt.txt](docs/experimento_cdt.txt). Se colocó el CDT
+entre Ana y Luis para observar tanto lo ya cobrado como lo que queda pendiente.
+Ana queda con $1.987.100; el CDT lanza `NotImplementedError`; Luis conserva
+$500.000. No hay reversión del primer cobro. Si el CDT ocupa el lugar 500.000,
+las primeras 499.999 cuentas pudieron cobrar y las posteriores quedan pendientes.
+Reintentar toda la lista sin un control adicional puede duplicar los cobros.
+
+### Experimento 2: probar la comisión sin Oracle ni SMS
+
+La comisión se pudo comprobar, pero aparecieron mensajes de Oracle y SMS:
+[experimento_acoplamiento.txt](docs/experimento_acoplamiento.txt).
+En este laboratorio los proveedores son simulados: no hubo conexión real.
+El constructor no permite sustituirlos por dobles mediante su interfaz pública.
+En Python sería posible usar `patch` o reasignar atributos después de construir;
+por eso la prueba no es literalmente imposible, pero dependería de los detalles
+internos y el constructor de un proveedor real ya podría tener efectos externos.
+
+### Medición antes de refactorizar
+
+| Métrica | Antes |
+|---|---:|
+| Líneas de `transferir` | 38 |
+| Razones de cambio del servicio | 7 |
+| Clases concretas construidas por el servicio | 2 |
+| Métodos vacíos o rechazo por “no aplica” | 4 |
+| ¿Se prueba sin Oracle ni SMS por inyección pública? | No |
+| Archivos de código de producción | 11 |
+
+Se cuentan líneas físicas desde `def` hasta la última sentencia, incluidos
+comentarios y blancos internos. Los cuatro métodos problemáticos son los tres
+vacíos y el retiro prematuro del CDT; las declaraciones abstractas no cuentan.
+Las siete razones de cambio son las siete etapas del método original.
+El diagrama original se conserva en `docs/uml_antes.md`.
