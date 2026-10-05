@@ -119,3 +119,17 @@ la clase no tiene que heredar explícitamente de la interfaz.
 `DevengaIntereses`, `RecibeCuotas` y `PermiteAvances` nombran las capacidades
 restantes; ningún producto conserva operaciones vacías por “no aplica”.
 La comparación pasó: `docs/salidas/control-I-comparacion.txt`.
+
+### Control D
+
+El servicio recibe seis colaboradores mediante protocolos. `main.py` decide
+qué repositorio, notificador, comprobante y observador conectar. El servicio
+construye **cero proveedores concretos**. Conoce `Transferencia` como operación
+de dominio y `Transaccion` como dato de resultado; no sería correcto decir que
+no conoce ninguna clase concreta. Construye una `Transferencia` por llamada,
+no una conexión ni un proveedor. En Python esta llamada equivale a un `new`
+de Java. Esta distinción se mantiene en las métricas finales.
+
+Ahora se puede inyectar un repositorio en memoria y un notificador espía desde
+el constructor. No hace falta modificar el servicio ni parchear sus detalles.
+La comparación pasó: `docs/salidas/control-D-comparacion.txt`.
