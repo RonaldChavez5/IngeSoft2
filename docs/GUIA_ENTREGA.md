@@ -48,7 +48,7 @@ no use `--force` para resolverlo.
 
 ## Para cerrar la entrega académica
 
-1. Agregar al README los nombres completos, códigos y grupo que exija el profesor.
+1. Identificación registrada: Ronald Arturo Chávez, único integrante.
 2. Obtener el repositorio asignado de la otra pareja y realizar allí R6, en una rama.
 3. Registrar el commit `revision-cruzada` en ese repositorio.
 4. Recibir la lista de revisión de la otra pareja y guardarla en este repositorio.

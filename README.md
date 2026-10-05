@@ -2,11 +2,13 @@
 
 Ingeniería de Software II · Universidad Nacional de Colombia, sede Bogotá · 2026.
 
+**Único integrante:** Ronald Arturo Chávez.
+
 ## Estado y acceso rápido
 
 La rama `main` incluye R1-R5 y **23 pruebas que pasan**. R6 está preparado
-como demostración independiente en `demo-r6`. Faltan los datos de los integrantes,
-la revisión cruzada real y el destino de GitHub para cerrar la entrega.
+como demostración independiente en `demo-r6`. Faltan la revisión cruzada real
+y la publicación en GitHub para cerrar la entrega.
 
 - [Guía de ejecución, GitHub y entrega](docs/GUIA_ENTREGA.md).
 - [Comparación visual UML](docs/uml_comparacion.html).
@@ -362,7 +364,7 @@ No hay credenciales, servidores de producción ni envío real de mensajes.
 
 - Rama `main`: bloques 0-4 y cierre documental, código y pruebas.
 - Rama `demo-r6`: pago de servicios probado sobre el repositorio propio.
-- Identificación de integrantes: pendiente de recibir los nombres y grupo.
+- Único integrante: Ronald Arturo Chávez.
 - Revisión cruzada y respuesta 6(d): pendientes de la otra pareja.
 - Publicación en GitHub: pendiente de la URL o cuenta de destino.
 
