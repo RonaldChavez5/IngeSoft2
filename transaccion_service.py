@@ -1,4 +1,4 @@
-from cuenta import Cuenta
+from cuenta_operable import CuentaOperable
 from transferencia import Transferencia
 from validador_monto import ValidadorMonto
 from comisiones import Comisiones
@@ -17,7 +17,7 @@ class TransaccionService:
         self.comprobante = ComprobanteConsola()
         self.auditoria = AuditoriaConsola()
 
-    def transferir(self, origen: Cuenta, destino: Cuenta,
+    def transferir(self, origen: CuentaOperable, destino: CuentaOperable,
                    monto: float, tipo: str) -> None:
         self.ejecutar(Transferencia(origen, destino), monto, tipo)
 

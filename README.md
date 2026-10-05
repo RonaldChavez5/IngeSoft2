@@ -93,3 +93,19 @@ Ese es el único archivo existente que debe cambiar para conectar el tipo nuevo.
 El servicio y el selector `Comisiones` permanecen intactos. El diccionario
 sustituye la decisión por tipos; un tipo desconocido todavía se rechaza.
 La comparación pasó: `docs/salidas/control-O-comparacion.txt`.
+
+### Control L
+
+`Cuenta` contiene los datos comunes. `CuentaOperable` ofrece depósito, retiro y
+cuota; `CuentaAhorros` pertenece a esa rama. `CDT` pertenece solo a `Cuenta` y
+ofrece `redimir(hoy)`, con su condición de vencimiento explícita. Un CDT no es
+un origen válido ni una cuenta a la que se le cobre la cuota mensual.
+
+Python no verifica anotaciones al ejecutar. Un verificador estático como mypy
+puede señalar el uso de `CDT` donde se pide `CuentaOperable`; sin ese verificador,
+un uso incorrecto se detecta al ejecutar. No afirmamos una protección de compilación
+que Python no ofrece por sí solo. Detectarlo antes de ejecutar evita descubrirlo
+en medio del lote. Un `try/except` que ignore CDT ocultaría el contrato incorrecto
+y no impediría volver a pasar uno a una transferencia.
+
+La comparación pasó: `docs/salidas/control-L-comparacion.txt`.

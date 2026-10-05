@@ -1,5 +1,5 @@
-from cuenta import Cuenta
+from cuenta_operable import CuentaOperable
 
 
-class CuentaAhorros(Cuenta):
-    """Cuenta de ahorros del código original."""
+class CuentaAhorros(CuentaOperable):
+    """Cuenta operable con disponibilidad de su saldo completo."""

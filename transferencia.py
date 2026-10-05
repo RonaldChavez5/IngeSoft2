@@ -1,11 +1,11 @@
-from cuenta import Cuenta
+from cuenta_operable import CuentaOperable
 from transaccion import Transaccion
 
 
 class Transferencia:
     """Movimiento de dinero entre dos cuentas; no conoce proveedores externos."""
 
-    def __init__(self, origen: Cuenta, destino: Cuenta):
+    def __init__(self, origen: CuentaOperable, destino: CuentaOperable):
         self.origen = origen
         self.destino = destino
 
