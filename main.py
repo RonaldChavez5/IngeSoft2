@@ -1,6 +1,8 @@
 from datetime import date, timedelta
 from comisiones import Comisiones
 from comision_llave import ComisionLlave
+from comision_servicios import ComisionServicios
+from pago_servicio import PagoServicio
 from politicas_comision import MismoBanco, OtroBanco, Internacional
 from cuenta_ahorros import CuentaAhorros
 from cuenta_infantil import CuentaInfantil
@@ -25,7 +27,8 @@ def construir_servicio() -> TransaccionService:
     return TransaccionService(
         ValidadorMonto(),
         Comisiones({"MISMO_BANCO": MismoBanco(), "OTRO_BANCO": OtroBanco(),
-                    "INTERNACIONAL": Internacional(), "LLAVE": ComisionLlave()}),
+                    "INTERNACIONAL": Internacional(), "LLAVE": ComisionLlave(),
+                    "SERVICIO_PUBLICO": ComisionServicios()}),
         PostgresRepositorio(), NotificadorMultiple([SmsGateway(), PushGateway()]),
         ComprobanteConsola(), ObservadorMultiple([AuditoriaConsola(), AntifraudeConsola()]),
     )
@@ -47,6 +50,8 @@ def main() -> None:
         print(f"[RECHAZADA] {error}; saldo sin cambio: ${infantil.saldo}")
     servicio.transferir(infantil, luis, 25_000.0, "MISMO_BANCO")
     CobroCuotaManejo().cobrar_mensual([infantil])
+    servicio.ejecutar(PagoServicio(ana, "FACT-AGUA-2026-10"),
+                       184_300.0, "SERVICIO_PUBLICO")
     productos = [TarjetaCredito(3_000_000), CreditoVivienda(120_000_000)]
     for extracto in generar_extractos(productos):
         print(extracto)
