@@ -1,223 +1,252 @@
-# Laboratorio L2: SOLID - Banco Andino
+# Laboratorio L2: SOLID — Banco Andino
 
-Ingeniería de Software II · Universidad Nacional de Colombia, sede Bogotá · 2026.
+**Estudiante:** Ronald Arturo Chávez
 
-**Único integrante:** Ronald Arturo Chávez.
+**Asignatura:** Ingeniería de Software II
 
-## Estado y acceso rápido
+**Universidad Nacional de Colombia, sede Bogotá — 2026**
 
-La rama `main` incluye R1-R5 y **23 pruebas que pasan**. R6 está preparado
-como demostración independiente en `demo-r6`. Faltan la revisión cruzada real
-y la publicación en GitHub para cerrar la entrega.
+**Repositorio:** https://github.com/RonaldChavez5/IngeSoft2
 
-- [Guía de ejecución, GitHub y entrega](docs/GUIA_ENTREGA.md).
-- [Comparación visual UML](docs/uml_comparacion.html).
-- [Resultados de pruebas finales](docs/pruebas_finales.txt).
-- [Verificación reproducible de los controles](docs/verificacion_historial.txt).
+## Introducción
 
-## Lenguaje y ejecución
+En este laboratorio analicé el backend de Banco Andino para identificar sus
+problemas de diseño y corregirlos mediante los principios SOLID. Después
+incorporé los requerimientos del negocio y comprobé los resultados con pruebas.
 
-Python 3.12 o superior, solo biblioteca estándar. Se eligió porque permite ejecutar
-el programa y `unittest` sin instalar una base de datos ni librerías externas.
+Elegí Python 3.12 porque me permite trabajar con clases, contratos y pruebas
+unitarias sin instalar librerías adicionales. Conservé en la traducción inicial
+los problemas del código Java para poder comparar el diseño antes y después.
+Organicé la refactorización y los requerimientos R1 a R5 en la rama `main`.
+La implementación de R6 está en la rama `demo-r6`.
+
+## Ejecución del proyecto
+
+Utilicé estos comandos desde la carpeta del repositorio para ejecutar el programa
+y sus pruebas:
 
 ```bash
 python main.py
+python -m unittest discover -v
 ```
 
-La traducción conserva los 11 archivos y los defectos del original. `ValueError`
-equivale a argumento inválido; `RuntimeError`, a estado inválido; y
-`NotImplementedError`, al retiro no soportado del CDT. Los valores se convierten
-a `float` para conservar el modelo `double`. Se usan 183 días para representar
-el CDT futuro de la demostración; el día exacto no interviene en la salida.
-La caracterización compara el código Python original con su refactorización,
-no las convenciones de formato numérico de Java contra las de Python.
+Para comparar las salidas de los controles y consultar el historial, utilicé:
 
-## Bloque 0. Arranque
+```bash
+python scripts/verificar_historial.py
+git log --oneline --all --graph
+```
 
-La ejecución mueve $150.000 de Ana a Luis y cobra $7.500 de comisión. Luego
-cobra $12.900 a cada cuenta. Los saldos finales son $1.829.600 y $637.100.
-La salida original está en [salida_original.txt](salida_original.txt).
+Conservé las etiquetas de cada etapa para consultar sus versiones. Oracle,
+PostgreSQL, SMS, push y antifraude están simulados con mensajes en consola.
+
+## Bloque 0. Código base
+
+Traduje los 11 archivos del ejemplo a Python. Usé `ValueError` para los argumentos
+inválidos, `RuntimeError` para el saldo insuficiente y `NotImplementedError`
+para el retiro no permitido del CDT. Conservé los saldos como `float`, siguiendo
+el uso de `double` en el código original.
+
+Al ejecutar el programa, comprobé que la transferencia de Ana a Luis mueve
+$150.000 y cobra $7.500 de comisión. Después se descuentan $12.900 de cuota
+de manejo a cada cuenta. Los saldos finales son $1.829.600 para Ana y $637.100
+para Luis.
+
+Guardé el resultado en [salida_original.txt](salida_original.txt). Para las
+comparaciones posteriores tomé como referencia esta versión de Python e ignoré
+únicamente la fecha y hora de auditoría. En la demostración usé un CDT con
+vencimiento 183 días después de su creación.
 
 ## Bloque 1. Diagnóstico
 
-| Clase / método | Letra | Evidencia | Consecuencia para el banco o cliente |
+### Hallazgos
+
+Identifiqué los siguientes problemas y sus consecuencias:
+
+| Clase o método | Principio | Evidencia | Consecuencia |
 |---|---|---|---|
-| `TransaccionService.transferir` | S | Valida, calcula comisión, mueve dinero, guarda, imprime, notifica y audita. | Cambiar un comprobante obliga a tocar el mismo método que descuenta el dinero. |
-| `TransaccionService.transferir` | O | Cadena `if/elif` por tipo, equivalente al `switch` original. | Una modalidad nueva obliga a editar código de transferencias que ya estaba funcionando. |
-| `CDT.retirar` / `Cuenta` | L | La subclase añade el rechazo por vencimiento a una operación que la cuenta base permite con saldo suficiente. | El cobro nocturno puede detenerse al encontrar un CDT y dejar cuentas sin procesar. |
-| `ProductoBancario` | I | Obliga a todos los productos a ofrecer depósitos, retiros, intereses, pagos y extractos. | Se aceptan operaciones que no hacen nada: el cliente puede creer que movió dinero. |
-| `TarjetaCredito.depositar`, `CreditoVivienda.depositar/retirar` | I | Tres métodos vacíos por “no aplica”. | Los errores de uso quedan ocultos en vez de verse en el contrato del producto. |
-| `TransaccionService.__init__` | D | Construye `OracleRepositorio` y `SmsGateway` directamente. | Probar una comisión activa también persistencia y mensajería; migrar de proveedor exige modificar el servicio. |
-| `CobroCuotaManejo.cobrar_mensual` | L | Recibe cualquier `Cuenta`, incluidos los CDT. | El tipo de entrada promete una capacidad que algunos elementos no tienen. |
+| `TransaccionService.transferir` | S | Valida, calcula comisión, mueve dinero, guarda, imprime, notifica y audita. | Un cambio en el comprobante obliga a tocar el método que también descuenta el dinero. |
+| `TransaccionService.transferir` | O | Selecciona la comisión con una cadena `if/elif`, equivalente al `switch` de Java. | Cada tipo nuevo exige modificar código que ya funciona. |
+| `CDT.retirar` | L | Añade una restricción de vencimiento que no existe en la cuenta base. | Un CDT puede detener el cobro mensual aunque tenga saldo suficiente. |
+| `ProductoBancario` | I | Exige operaciones que no corresponden a todos los productos. | El contrato permite solicitar movimientos que el producto no realiza. |
+| `TarjetaCredito.depositar` y `CreditoVivienda.depositar/retirar` | I | Son tres métodos vacíos. | Una llamada puede terminar sin error, aunque no haya hecho nada. |
+| `TransaccionService.__init__` | D | Construye directamente `OracleRepositorio` y `SmsGateway`. | Probar una comisión ejecuta también los proveedores; reemplazarlos obliga a editar el servicio. |
+| `CobroCuotaManejo.cobrar_mensual` | L | Acepta cualquier `Cuenta`, incluidos los CDT. | Puede dejar el lote incompleto al recibir una cuenta que no permite el retiro. |
 
-### Experimento 1: incluir el CDT en el cobro
+### Experimento con el CDT
 
-Ejecución real: [experimento_cdt.txt](docs/experimento_cdt.txt). Se colocó el CDT
-entre Ana y Luis para observar tanto lo ya cobrado como lo que queda pendiente.
-Ana queda con $1.987.100; el CDT lanza `NotImplementedError`; Luis conserva
-$500.000. No hay reversión del primer cobro. Si el CDT ocupa el lugar 500.000,
-las primeras 499.999 cuentas pudieron cobrar y las posteriores quedan pendientes.
-Reintentar toda la lista sin un control adicional puede duplicar los cobros.
+Coloqué el CDT entre las cuentas de Ana y Luis. Observé que primero se cobra a
+Ana, cuyo saldo queda en $1.987.100. Después el CDT lanza `NotImplementedError`
+y detiene el proceso. Luis conserva sus $500.000 porque no alcanza a ser procesado.
 
-### Experimento 2: probar la comisión sin Oracle ni SMS
+Si el CDT fuera la cuenta 500.000, las primeras 499.999 podrían haber sido
+cobradas y las siguientes quedarían sin procesar. También identifiqué un riesgo
+al repetir el lote completo: volver a cobrar las cuentas que ya se procesaron.
 
-La comisión se pudo comprobar, pero aparecieron mensajes de Oracle y SMS:
+Registré el resultado en [experimento_cdt.txt](docs/experimento_cdt.txt).
+
+### Prueba de la comisión sin Oracle ni SMS
+
+Pude comprobar la comisión de $7.500, pero al hacerlo también se ejecutaron
+Oracle y SMS. Aunque en el laboratorio son simulaciones, el constructor no
+permite reemplazarlos directamente por dobles de prueba.
+
+Consideré que en Python podría usar `patch` o reasignar los atributos. Sin
+embargo, eso haría que la prueba dependiera de los detalles internos del
+servicio. Por eso identifiqué el problema como una dependencia del diseño.
+
+Registré el resultado en
 [experimento_acoplamiento.txt](docs/experimento_acoplamiento.txt).
-En este laboratorio los proveedores son simulados: no hubo conexión real.
-El constructor no permite sustituirlos por dobles mediante su interfaz pública.
-En Python sería posible usar `patch` o reasignar atributos después de construir;
-por eso la prueba no es literalmente imposible, pero dependería de los detalles
-internos y el constructor de un proveedor real ya podría tener efectos externos.
 
-### Medición antes de refactorizar
+### Medición inicial
 
 | Métrica | Antes |
 |---|---:|
 | Líneas de `transferir` | 38 |
-| Razones de cambio del servicio | 7 |
-| Clases concretas construidas por el servicio | 2 |
-| Métodos vacíos o rechazo por “no aplica” | 4 |
-| ¿Se prueba sin Oracle ni SMS por inyección pública? | No |
-| Archivos de código de producción | 11 |
+| Razones de cambio de `TransaccionService` | 7 |
+| Clases concretas que construye el servicio | 2 |
+| Métodos vacíos o con rechazo por «no aplica» | 4 |
+| ¿Se prueba sin Oracle ni SMS mediante inyección? | No |
+| Archivos de producción | 11 |
 
-Se cuentan líneas físicas desde `def` hasta la última sentencia, incluidos
-comentarios y blancos internos. Los cuatro métodos problemáticos son los tres
-vacíos y el retiro prematuro del CDT; las declaraciones abstractas no cuentan.
-Las siete razones de cambio son las siete etapas del método original.
-El diagrama original se conserva en `docs/uml_antes.md`.
+Conté las líneas físicas desde `def` hasta la última instrucción, incluidos los
+comentarios y blancos internos. En los cuatro métodos problemáticos incluí los
+tres vacíos y el retiro del CDT. No conté las declaraciones abstractas como
+métodos vacíos. Las siete razones de cambio corresponden a las siete tareas
+del método original.
 
-## Bloque 2. Refactorización por controles
+Incluí el diagrama en [UML original](docs/uml_antes.md).
 
-### Control S
+## Bloque 2. Refactorización
 
-`TransaccionService` coordina el procesamiento de una transacción.
-La frase no necesita “y”: las reglas se ejecutan en colaboradores separados.
-Si cambia el formato legal, se modifica `comprobante_consola.py`.
-`Transferencia` mueve el dinero; `Transaccion` conserva los datos del resultado.
-El método `ejecutar` centraliza el orden de los pasos y `transferir` es su entrada
-para transferencias. Extraer la orquestación no elimina pasos: permite compartir
-el mismo flujo con otras operaciones sin duplicarlo.
-La comparación automática pasó: `docs/salidas/control-S-comparacion.txt`.
+### Control S: responsabilidad única
 
-### Control O
+Separé las tareas para que `TransaccionService` coordine el procesamiento de
+una transacción. Dejé la validación, las comisiones, el movimiento del dinero,
+el comprobante y los proveedores en colaboradores diferentes.
 
-Un nuevo tipo necesita una política nueva y su registro en `main.py`.
-Ese es el único archivo existente que debe cambiar para conectar el tipo nuevo.
-El servicio y el selector `Comisiones` permanecen intactos. El diccionario
-sustituye la decisión por tipos; un tipo desconocido todavía se rechaza.
-La comparación pasó: `docs/salidas/control-O-comparacion.txt`.
+La frase que resume el servicio es: «Coordina el procesamiento de una
+transacción». No necesita unir varias responsabilidades con «y». Si cambia el
+formato legal del comprobante, modifico `comprobante_consola.py`.
 
-### Control L
+Usé `Transferencia` para mover el dinero y `Transaccion` para conservar los datos
+del resultado. Dejé el orden de los pasos en `ejecutar`, que también puede
+utilizarse para otras operaciones.
 
-`Cuenta` contiene los datos comunes. `CuentaOperable` ofrece depósito, retiro y
-cuota; `CuentaAhorros` pertenece a esa rama. `CDT` pertenece solo a `Cuenta` y
-ofrece `redimir(hoy)`, con su condición de vencimiento explícita. Un CDT no es
-un origen válido ni una cuenta a la que se le cobre la cuota mensual.
+### Control O: abierto a extensión, cerrado a modificación
 
-Python no verifica anotaciones al ejecutar. Un verificador estático como mypy
-puede señalar el uso de `CDT` donde se pide `CuentaOperable`; sin ese verificador,
-un uso incorrecto se detecta al ejecutar. No afirmamos una protección de compilación
-que Python no ofrece por sí solo. Detectarlo antes de ejecutar evita descubrirlo
-en medio del lote. Un `try/except` que ignore CDT ocultaría el contrato incorrecto
-y no impediría volver a pasar uno a una transferencia.
+Reemplacé la selección por tipos con un registro de políticas de comisión.
+Para agregar otro tipo, creo su política y la registro en `main.py`. Ese es
+el único archivo existente que necesito modificar para conectarla.
 
-La comparación pasó: `docs/salidas/control-L-comparacion.txt`.
+Así mantengo sin cambios el servicio y el selector `Comisiones`. También
+conservé el rechazo de los tipos desconocidos.
 
-### Control I
+### Control L: sustitución de Liskov
 
-`GeneraExtracto` permite generar extractos de cuentas, tarjetas y créditos con
-el mismo generador. Solo pide `generar_extracto`; no necesita conocer depósitos,
-avances ni pagos. En Python los protocolos se cumplen de forma estructural:
-la clase no tiene que heredar explícitamente de la interfaz.
-`DevengaIntereses`, `RecibeCuotas` y `PermiteAvances` nombran las capacidades
-restantes; ningún producto conserva operaciones vacías por “no aplica”.
-La comparación pasó: `docs/salidas/control-I-comparacion.txt`.
+Separé los datos comunes de las operaciones que requieren dinero disponible.
+Dejé los datos en `Cuenta` y el depósito, retiro y cobro de cuota en
+`CuentaOperable`. `CuentaAhorros` pertenece a esta segunda rama.
 
-### Control D
+El CDT hereda de `Cuenta` y tiene `redimir(hoy)`, que expresa su condición de
+vencimiento. De esta forma, no pertenece al tipo admitido para transferir ni
+para cobrar la cuota mensual.
 
-El servicio recibe seis colaboradores mediante protocolos. `main.py` decide
-qué repositorio, notificador, comprobante y observador conectar. El servicio
-construye **cero proveedores concretos**. Conoce `Transferencia` como operación
-de dominio y `Transaccion` como dato de resultado; no sería correcto decir que
-no conoce ninguna clase concreta. Construye una `Transferencia` por llamada,
-no una conexión ni un proveedor. En Python esta llamada equivale a un `new`
-de Java. Esta distinción se mantiene en las métricas finales.
+En Python, las anotaciones no impiden por sí solas una llamada incorrecta.
+Un verificador como mypy puede detectarla antes de ejecutar; sin él, el error
+aparece en ejecución. No incluí una comprobación estática con mypy en las
+pruebas del laboratorio.
 
-Ahora se puede inyectar un repositorio en memoria y un notificador espía desde
-el constructor. No hace falta modificar el servicio ni parchear sus detalles.
-La comparación pasó: `docs/salidas/control-D-comparacion.txt`.
+Prefiero detectar ese uso antes de ejecutar porque evita descubrirlo a mitad
+de un lote. Capturar la excepción e ignorar los CDT no corregiría el contrato
+y dejaría abierta la posibilidad de repetir el error en otra operación.
+
+### Control I: segregación de interfaces
+
+Usé `GeneraExtracto` para que el mismo generador trabaje con cuentas, tarjetas
+y créditos. Solo necesita `generar_extracto()`, por lo que no depende de
+operaciones de depósito, retiro o pago.
+
+Separé las demás capacidades en `DevengaIntereses`, `RecibeCuotas` y
+`PermiteAvances`. Eliminé los métodos vacíos por «no aplica». En Python, una
+clase cumple un protocolo al ofrecer los métodos requeridos, sin tener que
+heredar explícitamente de él.
+
+### Control D: inversión de dependencias
+
+Hice que el servicio reciba seis colaboradores mediante contratos. Concentré
+la selección de implementaciones en `construir_servicio`, dentro de `main.py`.
+Allí decido qué repositorio, notificador, comprobante y observador utilizar.
+
+El servicio ya no construye proveedores concretos. Todavía construye una
+`Transferencia`, que es una operación del dominio, y utiliza `Transaccion`
+como resultado. Por eso distingo entre cero proveedores construidos y una
+clase concreta construida si cuento también esa operación.
+
+Con este cambio pude volver al experimento del bloque 1 y probar la comisión
+con dobles, sin modificar el servicio ni ejecutar Oracle o SMS.
+
+### Comprobación del comportamiento
+
+Comparé la salida después de cada control y obtuve el mismo resultado que en
+el programa original, salvo la fecha y hora de auditoría. Guardé las cinco
+salidas y sus comparaciones en `docs/salidas/`.
 
 ## Bloque 3. Pruebas unitarias
 
-```bash
-python -m unittest discover -v
-```
+Implementé las cinco pruebas obligatorias en `tests/test_transferencias.py`:
 
-Las cinco pruebas obligatorias usan `RepositorioMemoria`, `NotificadorEspia`,
-`ComprobanteEspia` y `ObservadorEspia`. No importan Oracle ni SMS.
-Cubren comisión cero, comisión de $7.500, rechazo por saldo, efectos exactamente
-una vez y tipo desconocido. Además de la excepción, verifican saldo y efectos.
+1. Transferencia al mismo banco: comisión cero y movimiento exacto del monto.
+2. Transferencia a otro banco: comisión de $7.500 y descuento de monto más comisión.
+3. Saldo insuficiente: rechazo sin guardar ni notificar.
+4. Transferencia exitosa: un registro y una notificación.
+5. Tipo desconocido: rechazo sin modificar el saldo.
 
-El tiempo medido está en [pruebas_bloque_3.txt](docs/pruebas_bloque_3.txt).
-Es el tiempo del framework para la suite, no incluye el arranque del intérprete
-y puede redondearse a 0,000 s en estas pruebas pequeñas. No es un benchmark.
-Se cambiaron **0 líneas de TransaccionService** para escribirlas. En el bloque 1
-hubiéramos tenido que ejecutar los proveedores simulados o parchear internos.
+Usé `RepositorioMemoria`, `NotificadorEspia`, `ComprobanteEspia` y
+`ObservadorEspia`. Estos dobles registran las llamadas para comprobar lo ocurrido,
+sin ejecutar los proveedores externos simulados.
+
+No necesité cambiar ninguna línea de `TransaccionService` para escribir las
+pruebas. En el código original habría tenido que parchear sus dependencias
+internas o ejecutar Oracle y SMS.
+
+Guardé la ejecución de las cinco pruebas en
+[pruebas_bloque_3.txt](docs/pruebas_bloque_3.txt). Con las pruebas adicionales de
+requerimientos y contratos, obtuve **23 pruebas correctas en `main`**. El tiempo
+registrado fue de **0,002 segundos**, sin contar el arranque de Python. Este
+valor puede variar según el equipo.
+
+Resultado final: [pruebas_finales.txt](docs/pruebas_finales.txt).
 
 ## Bloque 4. Requerimientos del negocio
 
-Las estimaciones se escribieron antes de implementar cada cambio. Se comparan
-archivos **de producción**: módulos `.py` en la raíz. Las pruebas y la documentación
-se contabilizan aparte, para no confundir diseño con evidencia. Los JSON de cada
-requerimiento enumeran nombres y permiten contrastarlos con `git show --stat`.
+### Cambios implementados
 
-### R1: resultado registrado
+| Requerimiento | Implementación |
+|---|---|
+| R1. Transferencias por llave | Agregué `ComisionLlave` con comisión cero. Una transferencia de $50.000 descuenta exactamente $50.000. No implementé búsqueda de cuentas por llave, de acuerdo con el alcance del ejercicio. |
+| R2. Cuenta infantil | Agregué el acumulado diario de retiros y el límite de $200.000. Comprobé que un retiro rechazado conserva el saldo y que la cuenta puede recibir depósitos, transferir y pagar su cuota. |
+| R3. Notificaciones push | Conecté SMS y push mediante `NotificadorMultiple`. Cada canal recibe un aviso por operación exitosa. |
+| R4. Antifraude | Conecté auditoría y antifraude mediante `ObservadorMultiple`. Las transferencias rechazadas no generan esos registros. |
+| R5. PostgreSQL | Agregué `PostgresRepositorio` y cambié la configuración de `main.py`. Conservé Oracle y las cinco pruebas originales sin modificaciones. |
 
-Archivos de producción existentes modificados: 1.
-Archivos de producción nuevos: 1.
-Detalle verificable: `docs/cambios_req_1.json`. La suite completa pasó y
-las cinco pruebas originales no cambiaron: `docs/pruebas_req_1.txt`.
+Para la cuenta infantil tomé el día del reloj inyectado. Incluí la comisión en
+el importe del retiro y dejé la cuota administrativa separada del límite diario.
+La cuota se cobra si hay saldo. También comprobé que los depósitos no reinician
+el acumulado de retiros.
 
-Decisiones de R2: “día” significa fecha local del reloj inyectado (en una instalación
-colombiana se debe configurar esa zona horaria). Los débitos voluntarios incluyen
-monto y comisión; depositar no reinicia el cupo. La cuota administrativa no consume
-el límite de retiros y se cobra si hay saldo, aun con el cupo diario agotado.
-El enunciado no precisa esas dos reglas; se dejan explícitas y se prueban.
-En el código original sería posible agregar una subclase sin arreglar el CDT;
-la estimación de tres archivos supone una integración correcta que distinga
-cuota administrativa y retiro, no solo hacer pasar el ejemplo mínimo.
+Conservé la línea de conexión del SMS y un único mensaje al cliente por operación.
+Apliqué auditoría y antifraude a las transacciones que pasan por el servicio.
+Los depósitos, retiros directos y cuotas administrativas quedan fuera de ese
+flujo en este modelo.
 
-### R2: resultado registrado
+### Tabla de cambios
 
-Archivos de producción existentes modificados: 1.
-Archivos de producción nuevos: 1.
-Detalle verificable: `docs/cambios_req_2.json`. La suite completa pasó y
-las cinco pruebas originales no cambiaron: `docs/pruebas_req_2.txt`.
+Antes de implementar cada requerimiento estimé los archivos que tendría que
+modificar en el código original. Después conté los cambios reales del diseño
+refactorizado. Separé los archivos de producción de los de pruebas.
 
-### R3: resultado registrado
-
-Archivos de producción existentes modificados: 1.
-Archivos de producción nuevos: 2.
-Detalle verificable: `docs/cambios_req_3.json`. La suite completa pasó y
-las cinco pruebas originales no cambiaron: `docs/pruebas_req_3.txt`.
-
-### R4: resultado registrado
-
-Archivos de producción existentes modificados: 1.
-Archivos de producción nuevos: 2.
-Detalle verificable: `docs/cambios_req_4.json`. La suite completa pasó y
-las cinco pruebas originales no cambiaron: `docs/pruebas_req_4.txt`.
-
-### R5: resultado registrado
-
-Archivos de producción existentes modificados: 1.
-Archivos de producción nuevos: 1.
-Detalle verificable: `docs/cambios_req_5.json`. La suite completa pasó y
-las cinco pruebas originales no cambiaron: `docs/pruebas_req_5.txt`.
-
-### Tabla consolidada del bloque 4
-
-| Req. | Original: existentes estimados | Refactorizado: existentes reales | Producción nueva | Pruebas nuevas | ¿Se rompió alguna? |
+| Req. | Existentes a modificar en el original, estimado | Existentes modificados, real | Producción nueva | Pruebas nuevas | ¿Se rompió alguna prueba? |
 |---|---:|---:|---:|---:|---|
 | R1 | 2 | 1 | 1 | 1 | No |
 | R2 | 3 | 1 | 1 | 1 | No |
@@ -225,29 +254,37 @@ las cinco pruebas originales no cambiaron: `docs/pruebas_req_5.txt`.
 | R4 | 1 | 1 | 2 | 1 | No |
 | R5 | 1 | 1 | 1 | 1 | No |
 
-En los cinco requerimientos solo cambió `main.py` entre los módulos existentes.
-Son **5 modificaciones acumuladas y 1 archivo distinto**. Se crearon 7 módulos
-de producción y 5 módulos de pruebas. Se modificaron 0 pruebas del bloque 3.
-La estimación original suma 8 intervenciones sobre archivos; es una estimación,
-no una medición experimental del costo de implementar allí los cinco cambios.
-No se interpreta esa diferencia como una reducción porcentual de horas de trabajo.
+En los cinco requerimientos modifiqué únicamente `main.py` entre los módulos
+existentes: fueron **cinco intervenciones sobre un archivo distinto**.
+Agregué siete módulos de producción y cinco archivos de pruebas. Conservé sin
+cambios las cinco pruebas del bloque 3.
 
-R3 conserva el log de conexión del SMS original: hay una línea diagnóstica
-`[SMS] Conectando...` y **un solo mensaje al cliente** `[SMS] Para...` por operación.
-El notificador compuesto recibe una llamada y la distribuye una vez por canal.
-R4 observa las transacciones procesadas por el servicio (transferencias y, en
-la demostración, pagos). La cuota administrativa y el retiro directo de la
-cuenta no se registran como transacciones de ese servicio en el código base.
-Si “cada transacción” incluyera también esos movimientos, habría que ampliar
-el alcance e integrarlos al mismo flujo; no se afirma que ya esté implementado.
+Para R2 estimé tres modificaciones en el original porque consideré necesario
+separar el retiro de la cuota y resolver la compatibilidad de las cuentas.
+Una subclase que solo cubriera el caso mínimo podría necesitar menos cambios.
+Las cifras del original son estimaciones, no resultados de una segunda implementación.
 
-## Bloque 5. Revisión cruzada
+Guardé las estimaciones en `docs/estimaciones/`, los conteos en
+`docs/cambios_req_*.json` y las ejecuciones en `docs/pruebas_req_1.txt` a
+`docs/pruebas_req_5.txt`.
 
-**Pendiente de intercambio real.** La guía exige código ajeno, una rama en ese
-repositorio y la lista recibida. No contamos con esos insumos y no inventamos
-una revisión. La [plantilla](docs/revision_cruzada_pendiente.md) está lista.
-La rama `demo-r6` implementa R6 sobre este diseño como demostración técnica;
-no sustituye la actividad evaluada ni su commit `revision-cruzada`.
+## Bloque 5. Extensión R6
+
+Implementé el pago de servicios públicos sobre mi proyecto en la rama `demo-r6`.
+Agregué `PagoServicio` y `ComisionServicios`, y conecté el nuevo tipo desde
+`main.py`. No modifiqué `TransaccionService` ni copié su lógica.
+
+Reutilicé `ejecutar` para validar el monto, calcular la comisión, guardar la
+transacción, generar el comprobante, notificar y registrar los eventos de
+auditoría y antifraude. En `PagoServicio` dejé únicamente el movimiento
+específico del pago y los datos de la factura.
+
+Comprobé que un pago de $184.300 descuenta **$185.800**, incluyendo la comisión
+fija de $1.500. El comprobante utiliza la referencia de la factura como destino.
+También comprobé el rechazo de montos inválidos, saldo insuficiente, un CDT
+como origen y un pago que exceda el límite de la cuenta infantil.
+
+La rama `demo-r6` contiene **28 pruebas correctas**. Para ejecutarla utilicé:
 
 ```bash
 git switch demo-r6
@@ -256,118 +293,97 @@ python -m unittest discover -v
 git switch main
 ```
 
-La rama demuestra reutilización del método `ejecutar` sin cambiar una línea del
-servicio. Agrega dos archivos de producción y modifica solo `main.py`.
-Paga $184.300 con comisión $1.500, deja la referencia en el comprobante y
-utiliza PostgreSQL, SMS, push, auditoría y antifraude. Incluye cinco pruebas extra.
-
 ## Bloque 6. Cierre
 
-### UML antes y después
+### Diagramas UML
 
-Los diagramas completos editables están en
-[UML original](docs/uml_antes.md) y [UML final](docs/uml_despues.md).
-La comparación visual se abre en [comparación UML](docs/uml_comparacion.html).
+Comparé la estructura original con el diseño final:
 
-| Antes | Después (vista principal) |
+| Antes | Después |
 |---|---|
 | ![UML original](docs/uml_antes.png) | ![UML final](docs/uml_despues.png) |
 
-### Tabla comparativa
+Incluí las versiones detalladas en [UML original](docs/uml_antes.md) y
+[UML final](docs/uml_despues.md). También preparé
+[uml_comparacion.html](docs/uml_comparacion.html) para ver ambos diagramas
+lado a lado en un navegador local.
 
+### Comparación final
 
-| Métrica | Antes | Después, rama main |
+| Métrica | Antes | Después, rama `main` |
 |---|---:|---:|
-| Líneas físicas de `transferir` | 38 | 3 |
-| Líneas del flujo `transferir` + `ejecutar` | 38 | 13 |
-| Razones de cambio de `TransaccionService` | 7 | 1: orquestación |
-| Clases concretas que construye el servicio (todas) | 2 | 1: operación `Transferencia` |
+| Líneas de `transferir` | 38 | 3 |
+| Líneas de `transferir` más `ejecutar` | 38 | 13 |
+| Razones de cambio del servicio | 7 | 1: coordinar el flujo |
+| Clases concretas que construye el servicio | 2 | 1: `Transferencia` |
 | Proveedores concretos que construye el servicio | 2 | 0 |
-| Métodos vacíos o rechazo por “no aplica” | 4 | 0 |
-| ¿Se prueba sin Oracle ni SMS por inyección pública? | No | Sí |
-| Total de archivos de producción | 11 | 28 |
-| Total de archivos versionados (incluye evidencia) | 13 | 87 |
-| Archivos existentes modificados en bloque 4 | No aplica | 5 intervenciones; 1 archivo distinto |
+| Métodos vacíos o con rechazo por «no aplica» | 4 | 0 |
+| ¿Se prueba sin Oracle ni SMS mediante inyección? | No | Sí |
+| Archivos de producción | 11 | 28 |
+| Archivos versionados, incluidas pruebas y documentación | 13 | 87 |
+| Archivos existentes modificados en el bloque 4 | No aplica | 5 intervenciones; 1 archivo distinto |
 
-El conteo de archivos de esta tabla usa el mismo criterio antes/después: módulos
-Python de producción en la raíz. No incluye pruebas, evidencias, Git ni diagramas.
-El inventario de todos los archivos versionados se entrega en
-`docs/inventario_versionado.txt`, separado por categoría, para que “total” no
-oculte archivos adicionales. Las interfaces están agrupadas por afinidad;
-no se creó un archivo por cada método.
+Al reducir `transferir` no eliminé la lógica: la distribuí entre `ejecutar`
+y sus colaboradores. Por eso incluí también la suma de ambos métodos.
+Guardé el inventario en [inventario_versionado.txt](docs/inventario_versionado.txt).
 
-La caída de 38 a 3 líneas no significa que desapareció toda la lógica:
-`ejecutar` contiene 10 líneas y llama a colaboradores. Por eso se muestra
-también la suma. Se conserva la operación concreta `Transferencia` como entrada
-cómoda del caso de uso; extraer una fábrica solo para llegar a cero clases
-concretas añadiría una abstracción sin una necesidad observada.
+### a) ¿Es un problema tener más archivos?
 
-### a) ¿Tener más archivos es un problema?
+No lo considero un problema por sí solo. Ahora puedo localizar cada
+responsabilidad sin recorrer un método que lo hace todo. Sí sería un problema
+si creara muchas clases sin una función clara. Por eso agrupé los protocolos
+relacionados y evité crear un archivo para cada método.
 
-No por sí solo. Ahora podemos localizar la comisión, la salida del comprobante
-y los proveedores sin editar el movimiento del dinero. Sí sería un problema
-si separar archivos obligara a saltar entre muchas capas que no tienen una
-responsabilidad propia. Por eso se agrupan protocolos relacionados. Tres
-capacidades de productos (`DevengaIntereses`, `RecibeCuotas`, `PermiteAvances`)
-aún no tienen un consumidor de producción; sirven para explicitar la segregación,
-pero en un sistema pequeño se podría esperar a necesitarlas antes de mantenerlas.
+Las capacidades de intereses, cuotas y avances todavía no tienen un consumidor
+en el programa principal. Si buscara el diseño mínimo para un proyecto pequeño,
+evaluaría incorporarlas cuando apareciera esa necesidad.
 
-### b) ¿Dónde se notó más la diferencia?
+### b) ¿En qué requerimiento noté más la diferencia?
 
-En R5 fue fácil de comprobar: agregamos `PostgresRepositorio`, cambiamos el
-armado en `main.py` y las cinco pruebas originales pasaron sin modificar sus
-archivos. Oracle sigue disponible. R3 y R4 también lo muestran: la notificación
-múltiple y el observador múltiple agregaron canales sin editar el servicio.
-No decimos que R5 haya ahorrado más archivos que los demás: el conteo real fue
-un archivo existente en cada requerimiento.
+En R5, porque cambié a PostgreSQL sin editar el servicio ni las cinco pruebas
+iniciales. Solo agregué el repositorio y cambié la configuración de `main.py`.
+Además, conservé Oracle para poder volver a utilizarlo.
 
-### c) ¿Qué no aguantó bien el diseño?
+En R3 y R4 también agregué proveedores sin cambiar el flujo principal. Los cinco
+requerimientos modificaron la misma cantidad de archivos existentes; la ventaja
+que observé está en no tocar el servicio para conectar esas implementaciones.
 
-R1-R5 pasaron sus criterios y las pruebas. R2 necesitó una decisión que el texto
-no precisaba: distinguir retiros voluntarios de la cuota administrativa y definir
-si la comisión consume el límite diario. La separación de capacidades permitió
-hacerlo en una subclase, pero esas reglas deben acordarse con negocio.
+### c) ¿Qué parte del diseño mejoraría?
 
-El diseño aún no garantiza atomicidad si un proveedor externo falla después de
-mover el dinero. Para un backend real se necesita una transacción de base de datos
-que registre movimiento y evento, reintentos con idempotencia y una estrategia
-para entregar notificaciones. Tampoco hay concurrencia protegida ni acumulador
-general del tope de $5 millones: el original lo verifica por operación aunque
-su mensaje diga “diario”. Se conservaron `float` y las validaciones heredadas;
-para producción se usaría dinero decimal y se rechazarían `NaN`/infinito en los
-límites del dominio. Estas mejoras quedan fuera de la refactorización conservadora.
+R2 me llevó a precisar cómo tratar la comisión y la cuota de manejo frente al
+límite diario. La separación entre retiro y cuota me permitió aplicar esas
+reglas sin modificar el servicio.
 
-### d) ¿Qué dijo la otra pareja? ¿Estamos de acuerdo?
+Para un sistema real también mejoraría el manejo de fallos: si un proveedor
+falla después de mover el dinero, el diseño actual no revierte el movimiento.
+Incorporaría transacciones de base de datos y controles para evitar duplicados
+al reintentar. Usaría dinero decimal y validaría valores no finitos.
+Conservé el límite original de $5 millones por operación, aunque su mensaje
+lo llame «diario».
 
-Pendiente. No se recibió el repositorio ajeno ni comentarios de otra pareja.
-Esta respuesta debe completarse con la lista real; la demostración propia R6
-no permite atribuirles una opinión.
+### d) ¿Qué observo al revisar individualmente mi diseño?
 
-### e) ¿Cómo justificar dos semanas de refactorización?
+La separación que encuentro más útil es la del movimiento de dinero frente a
+los proveedores. En R6 pude reutilizar el flujo existente y agregar el pago
+sin cambiar el servicio.
 
-Mostraríamos las evidencias: cinco salidas de control conservaron el comportamiento;
-los cinco requerimientos tocaron un solo archivo de producción existente,
-`main.py`, en cinco commits; las pruebas iniciales se conservaron sin cambios.
-Eso indica menor acoplamiento y facilita revisar una modificación sin tocar el
-núcleo de transferencias. No basta para prometer un ahorro fijo de tiempo ni
-justificar automáticamente dos semanas: propondríamos un piloto con métricas
-de tiempo de cambio, incidentes y retrabajo del sistema real.
+También veo un punto que podría simplificar: los contratos de intereses,
+cuotas y avances expresan las capacidades de los productos, pero todavía no
+tienen consumidores en el programa principal. Mantendría esa observación como
+criterio para evitar abstracciones innecesarias en una siguiente versión.
 
-## Fuentes y alcance
+### e) ¿Cómo justificaría la refactorización ante el jefe?
 
-Enunciados suministrados: `Laboratorio_SOLID.pdf` (bloques 0-6 y rúbrica) y
-`Requerimientos_SOLID.pdf` (R1-R6). No se utilizaron reglas bancarias externas.
-Oracle, PostgreSQL, SMS, push y antifraude son simulaciones de consola.
-No hay credenciales, servidores de producción ni envío real de mensajes.
+Mostraría los resultados: conservé la salida en los cinco controles, pude
+probar las reglas sin proveedores externos y agregué los cinco requerimientos
+sin modificar el servicio. Con estos datos explicaría que el diseño facilita
+revisar cambios y reduce las partes que pueden verse afectadas.
 
-## Entrega y pasos pendientes
+Para justificar dos semanas de trabajo también mediría el tiempo de los cambios
+y los errores del sistema real. No usaría solamente el aumento de archivos o
+la reducción de líneas como argumento.
 
-- Rama `main`: bloques 0-4 y cierre documental, código y pruebas.
-- Rama `demo-r6`: pago de servicios probado sobre el repositorio propio.
-- Único integrante: Ronald Arturo Chávez.
-- Revisión cruzada y respuesta 6(d): pendientes de la otra pareja.
-- Publicación en GitHub: pendiente de la URL o cuenta de destino.
+## Referencias
 
-No se presenta el paquete como entrega completamente cerrada mientras falte
-la revisión cruzada. El historial se produjo al ejecutar las etapas; no se
-simularon commits vacíos ni se cambiaron sus fechas.
+- `Laboratorio_SOLID.pdf`: enunciado, bloques y rúbrica de la actividad.
+- `Requerimientos_SOLID.pdf`: criterios de aceptación de R1 a R6.
