@@ -72,3 +72,16 @@ comentarios y blancos internos. Los cuatro métodos problemáticos son los tres
 vacíos y el retiro prematuro del CDT; las declaraciones abstractas no cuentan.
 Las siete razones de cambio son las siete etapas del método original.
 El diagrama original se conserva en `docs/uml_antes.md`.
+
+## Bloque 2. Refactorización por controles
+
+### Control S
+
+`TransaccionService` coordina el procesamiento de una transacción.
+La frase no necesita “y”: las reglas se ejecutan en colaboradores separados.
+Si cambia el formato legal, se modifica `comprobante_consola.py`.
+`Transferencia` mueve el dinero; `Transaccion` conserva los datos del resultado.
+El método `ejecutar` centraliza el orden de los pasos y `transferir` es su entrada
+para transferencias. Extraer la orquestación no elimina pasos: permite compartir
+el mismo flujo con otras operaciones sin duplicarlo.
+La comparación automática pasó: `docs/salidas/control-S-comparacion.txt`.
