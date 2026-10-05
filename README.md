@@ -164,3 +164,19 @@ Archivos de producción existentes modificados: 1.
 Archivos de producción nuevos: 1.
 Detalle verificable: `docs/cambios_req_1.json`. La suite completa pasó y
 las cinco pruebas originales no cambiaron: `docs/pruebas_req_1.txt`.
+
+Decisiones de R2: “día” significa fecha local del reloj inyectado (en una instalación
+colombiana se debe configurar esa zona horaria). Los débitos voluntarios incluyen
+monto y comisión; depositar no reinicia el cupo. La cuota administrativa no consume
+el límite de retiros y se cobra si hay saldo, aun con el cupo diario agotado.
+El enunciado no precisa esas dos reglas; se dejan explícitas y se prueban.
+En el código original sería posible agregar una subclase sin arreglar el CDT;
+la estimación de tres archivos supone una integración correcta que distinga
+cuota administrativa y retiro, no solo hacer pasar el ejemplo mínimo.
+
+### R2: resultado registrado
+
+Archivos de producción existentes modificados: 1.
+Archivos de producción nuevos: 1.
+Detalle verificable: `docs/cambios_req_2.json`. La suite completa pasó y
+las cinco pruebas originales no cambiaron: `docs/pruebas_req_2.txt`.

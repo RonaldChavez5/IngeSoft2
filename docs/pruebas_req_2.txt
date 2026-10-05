@@ -1,0 +1,17 @@
+test_llave_descuenta_exactamente_50000 (tests.test_req_1.PruebasLlave.test_llave_descuenta_exactamente_50000) ... ok
+test_150000_mas_60000_rechazado_saldo_intacto (tests.test_req_2.PruebasCuentaInfantil.test_150000_mas_60000_rechazado_saldo_intacto) ... ok
+test_cuota_se_cobra_aun_con_limite_de_retiros_agotado (tests.test_req_2.PruebasCuentaInfantil.test_cuota_se_cobra_aun_con_limite_de_retiros_agotado) ... ok
+test_depositos_sin_tope_no_reinician_retiros (tests.test_req_2.PruebasCuentaInfantil.test_depositos_sin_tope_no_reinician_retiros) ... ok
+test_el_limite_se_reinicia_al_cambiar_dia (tests.test_req_2.PruebasCuentaInfantil.test_el_limite_se_reinicia_al_cambiar_dia) ... ok
+test_origen_transferencia_y_comision_cuentan_en_limite (tests.test_req_2.PruebasCuentaInfantil.test_origen_transferencia_y_comision_cuentan_en_limite) ... ok
+test_rechazo_por_saldo_no_consume_cupo_del_dia (tests.test_req_2.PruebasCuentaInfantil.test_rechazo_por_saldo_no_consume_cupo_del_dia) ... ok
+test_exito_se_guarda_y_notifica_una_sola_vez (tests.test_transferencias.PruebasTransferencias.test_exito_se_guarda_y_notifica_una_sola_vez) ... ok
+test_mismo_banco_sin_comision (tests.test_transferencias.PruebasTransferencias.test_mismo_banco_sin_comision) ... ok
+test_otro_banco_comision_7500 (tests.test_transferencias.PruebasTransferencias.test_otro_banco_comision_7500) ... ok
+test_saldo_insuficiente_sin_efectos_externos (tests.test_transferencias.PruebasTransferencias.test_saldo_insuficiente_sin_efectos_externos) ... ok
+test_tipo_desconocido_no_cambia_saldos (tests.test_transferencias.PruebasTransferencias.test_tipo_desconocido_no_cambia_saldos) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.001s
+
+OK

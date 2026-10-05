@@ -1,0 +1,14 @@
+{
+  "requerimiento": 2,
+  "produccion_modificados": [
+    "main.py"
+  ],
+  "produccion_nuevos": [
+    "cuenta_infantil.py"
+  ],
+  "pruebas_modificadas": [],
+  "pruebas_nuevas": [
+    "tests/test_req_2.py"
+  ],
+  "pruebas_bloque_3_sin_cambios": true
+}

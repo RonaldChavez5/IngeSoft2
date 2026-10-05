@@ -1,0 +1,7 @@
+Estimación registrada antes de implementar este requerimiento.
+Archivos existentes a modificar en el código original:
+- cuenta.py
+- cobro_cuota_manejo.py
+- main.py
+Total estimado: 3
+No incluye archivos nuevos, pruebas ni documentación.
