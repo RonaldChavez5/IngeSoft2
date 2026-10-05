@@ -2,6 +2,17 @@
 
 Ingeniería de Software II · Universidad Nacional de Colombia, sede Bogotá · 2026.
 
+## Estado y acceso rápido
+
+La rama `main` incluye R1-R5 y **23 pruebas que pasan**. R6 está preparado
+como demostración independiente en `demo-r6`. Faltan los datos de los integrantes,
+la revisión cruzada real y el destino de GitHub para cerrar la entrega.
+
+- [Guía de ejecución, GitHub y entrega](docs/GUIA_ENTREGA.md).
+- [Comparación visual UML](docs/uml_comparacion.html).
+- [Resultados de pruebas finales](docs/pruebas_finales.txt).
+- [Verificación reproducible de los controles](docs/verificacion_historial.txt).
+
 ## Lenguaje y ejecución
 
 Python 3.12 o superior, solo biblioteca estándar. Se eligió porque permite ejecutar
@@ -201,3 +212,160 @@ Archivos de producción existentes modificados: 1.
 Archivos de producción nuevos: 1.
 Detalle verificable: `docs/cambios_req_5.json`. La suite completa pasó y
 las cinco pruebas originales no cambiaron: `docs/pruebas_req_5.txt`.
+
+### Tabla consolidada del bloque 4
+
+| Req. | Original: existentes estimados | Refactorizado: existentes reales | Producción nueva | Pruebas nuevas | ¿Se rompió alguna? |
+|---|---:|---:|---:|---:|---|
+| R1 | 2 | 1 | 1 | 1 | No |
+| R2 | 3 | 1 | 1 | 1 | No |
+| R3 | 1 | 1 | 2 | 1 | No |
+| R4 | 1 | 1 | 2 | 1 | No |
+| R5 | 1 | 1 | 1 | 1 | No |
+
+En los cinco requerimientos solo cambió `main.py` entre los módulos existentes.
+Son **5 modificaciones acumuladas y 1 archivo distinto**. Se crearon 7 módulos
+de producción y 5 módulos de pruebas. Se modificaron 0 pruebas del bloque 3.
+La estimación original suma 8 intervenciones sobre archivos; es una estimación,
+no una medición experimental del costo de implementar allí los cinco cambios.
+No se interpreta esa diferencia como una reducción porcentual de horas de trabajo.
+
+R3 conserva el log de conexión del SMS original: hay una línea diagnóstica
+`[SMS] Conectando...` y **un solo mensaje al cliente** `[SMS] Para...` por operación.
+El notificador compuesto recibe una llamada y la distribuye una vez por canal.
+R4 observa las transacciones procesadas por el servicio (transferencias y, en
+la demostración, pagos). La cuota administrativa y el retiro directo de la
+cuenta no se registran como transacciones de ese servicio en el código base.
+Si “cada transacción” incluyera también esos movimientos, habría que ampliar
+el alcance e integrarlos al mismo flujo; no se afirma que ya esté implementado.
+
+## Bloque 5. Revisión cruzada
+
+**Pendiente de intercambio real.** La guía exige código ajeno, una rama en ese
+repositorio y la lista recibida. No contamos con esos insumos y no inventamos
+una revisión. La [plantilla](docs/revision_cruzada_pendiente.md) está lista.
+La rama `demo-r6` implementa R6 sobre este diseño como demostración técnica;
+no sustituye la actividad evaluada ni su commit `revision-cruzada`.
+
+```bash
+git switch demo-r6
+python main.py
+python -m unittest discover -v
+git switch main
+```
+
+La rama demuestra reutilización del método `ejecutar` sin cambiar una línea del
+servicio. Agrega dos archivos de producción y modifica solo `main.py`.
+Paga $184.300 con comisión $1.500, deja la referencia en el comprobante y
+utiliza PostgreSQL, SMS, push, auditoría y antifraude. Incluye cinco pruebas extra.
+
+## Bloque 6. Cierre
+
+### UML antes y después
+
+Los diagramas completos editables están en
+[UML original](docs/uml_antes.md) y [UML final](docs/uml_despues.md).
+La comparación visual se abre en [comparación UML](docs/uml_comparacion.html).
+
+| Antes | Después (vista principal) |
+|---|---|
+| ![UML original](docs/uml_antes.png) | ![UML final](docs/uml_despues.png) |
+
+### Tabla comparativa
+
+
+| Métrica | Antes | Después, rama main |
+|---|---:|---:|
+| Líneas físicas de `transferir` | 38 | 3 |
+| Líneas del flujo `transferir` + `ejecutar` | 38 | 13 |
+| Razones de cambio de `TransaccionService` | 7 | 1: orquestación |
+| Clases concretas que construye el servicio (todas) | 2 | 1: operación `Transferencia` |
+| Proveedores concretos que construye el servicio | 2 | 0 |
+| Métodos vacíos o rechazo por “no aplica” | 4 | 0 |
+| ¿Se prueba sin Oracle ni SMS por inyección pública? | No | Sí |
+| Total de archivos de producción | 11 | 28 |
+| Total de archivos versionados (incluye evidencia) | 13 | 87 |
+| Archivos existentes modificados en bloque 4 | No aplica | 5 intervenciones; 1 archivo distinto |
+
+El conteo de archivos de esta tabla usa el mismo criterio antes/después: módulos
+Python de producción en la raíz. No incluye pruebas, evidencias, Git ni diagramas.
+El inventario de todos los archivos versionados se entrega en
+`docs/inventario_versionado.txt`, separado por categoría, para que “total” no
+oculte archivos adicionales. Las interfaces están agrupadas por afinidad;
+no se creó un archivo por cada método.
+
+La caída de 38 a 3 líneas no significa que desapareció toda la lógica:
+`ejecutar` contiene 10 líneas y llama a colaboradores. Por eso se muestra
+también la suma. Se conserva la operación concreta `Transferencia` como entrada
+cómoda del caso de uso; extraer una fábrica solo para llegar a cero clases
+concretas añadiría una abstracción sin una necesidad observada.
+
+### a) ¿Tener más archivos es un problema?
+
+No por sí solo. Ahora podemos localizar la comisión, la salida del comprobante
+y los proveedores sin editar el movimiento del dinero. Sí sería un problema
+si separar archivos obligara a saltar entre muchas capas que no tienen una
+responsabilidad propia. Por eso se agrupan protocolos relacionados. Tres
+capacidades de productos (`DevengaIntereses`, `RecibeCuotas`, `PermiteAvances`)
+aún no tienen un consumidor de producción; sirven para explicitar la segregación,
+pero en un sistema pequeño se podría esperar a necesitarlas antes de mantenerlas.
+
+### b) ¿Dónde se notó más la diferencia?
+
+En R5 fue fácil de comprobar: agregamos `PostgresRepositorio`, cambiamos el
+armado en `main.py` y las cinco pruebas originales pasaron sin modificar sus
+archivos. Oracle sigue disponible. R3 y R4 también lo muestran: la notificación
+múltiple y el observador múltiple agregaron canales sin editar el servicio.
+No decimos que R5 haya ahorrado más archivos que los demás: el conteo real fue
+un archivo existente en cada requerimiento.
+
+### c) ¿Qué no aguantó bien el diseño?
+
+R1-R5 pasaron sus criterios y las pruebas. R2 necesitó una decisión que el texto
+no precisaba: distinguir retiros voluntarios de la cuota administrativa y definir
+si la comisión consume el límite diario. La separación de capacidades permitió
+hacerlo en una subclase, pero esas reglas deben acordarse con negocio.
+
+El diseño aún no garantiza atomicidad si un proveedor externo falla después de
+mover el dinero. Para un backend real se necesita una transacción de base de datos
+que registre movimiento y evento, reintentos con idempotencia y una estrategia
+para entregar notificaciones. Tampoco hay concurrencia protegida ni acumulador
+general del tope de $5 millones: el original lo verifica por operación aunque
+su mensaje diga “diario”. Se conservaron `float` y las validaciones heredadas;
+para producción se usaría dinero decimal y se rechazarían `NaN`/infinito en los
+límites del dominio. Estas mejoras quedan fuera de la refactorización conservadora.
+
+### d) ¿Qué dijo la otra pareja? ¿Estamos de acuerdo?
+
+Pendiente. No se recibió el repositorio ajeno ni comentarios de otra pareja.
+Esta respuesta debe completarse con la lista real; la demostración propia R6
+no permite atribuirles una opinión.
+
+### e) ¿Cómo justificar dos semanas de refactorización?
+
+Mostraríamos las evidencias: cinco salidas de control conservaron el comportamiento;
+los cinco requerimientos tocaron un solo archivo de producción existente,
+`main.py`, en cinco commits; las pruebas iniciales se conservaron sin cambios.
+Eso indica menor acoplamiento y facilita revisar una modificación sin tocar el
+núcleo de transferencias. No basta para prometer un ahorro fijo de tiempo ni
+justificar automáticamente dos semanas: propondríamos un piloto con métricas
+de tiempo de cambio, incidentes y retrabajo del sistema real.
+
+## Fuentes y alcance
+
+Enunciados suministrados: `Laboratorio_SOLID.pdf` (bloques 0-6 y rúbrica) y
+`Requerimientos_SOLID.pdf` (R1-R6). No se utilizaron reglas bancarias externas.
+Oracle, PostgreSQL, SMS, push y antifraude son simulaciones de consola.
+No hay credenciales, servidores de producción ni envío real de mensajes.
+
+## Entrega y pasos pendientes
+
+- Rama `main`: bloques 0-4 y cierre documental, código y pruebas.
+- Rama `demo-r6`: pago de servicios probado sobre el repositorio propio.
+- Identificación de integrantes: pendiente de recibir los nombres y grupo.
+- Revisión cruzada y respuesta 6(d): pendientes de la otra pareja.
+- Publicación en GitHub: pendiente de la URL o cuenta de destino.
+
+No se presenta el paquete como entrega completamente cerrada mientras falte
+la revisión cruzada. El historial se produjo al ejecutar las etapas; no se
+simularon commits vacíos ni se cambiaron sus fechas.

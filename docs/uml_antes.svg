@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1750" height="1550" viewBox="0 0 1750 1550"><rect width="100%" height="100%" fill="#f6f8fc"/>
+<text x="45" y="62" font-family="DejaVu Sans,sans-serif" font-size="34" font-weight="700" fill="#12233f">Banco Andino · UML original</text>
+<text x="45" y="98" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="400" fill="#475569">11 módulos de producción · rojo: relaciones y contratos problemáticos</text>
+<rect x="675" y="130" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="689" y="151" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«módulo»</text>
+<text x="689" y="177" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Main</text>
+<polyline points="675,191 1050,191" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="689" y="216" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ main()</text>
+<rect x="80" y="350" width="375" height="97" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="94" y="397" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">TransaccionService</text>
+<polyline points="80,411 455,411" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="94" y="436" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ transferir(origen, destino, …)</text>
+<rect x="675" y="350" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="689" y="397" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CobroCuotaManejo</text>
+<polyline points="675,411 1050,411" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="689" y="436" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ cobrar_mensual(cuentas)</text>
+<rect x="1270" y="350" width="375" height="205" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="1284" y="371" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="1284" y="397" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">ProductoBancario</text>
+<polyline points="1270,411 1645,411" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="1284" y="436" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ depositar(monto)</text>
+<text x="1284" y="463" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ retirar(monto)</text>
+<text x="1284" y="490" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular_intereses()</text>
+<text x="1284" y="517" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ pagar_cuota(monto)</text>
+<text x="1284" y="544" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ generar_extracto()</text>
+<rect x="50" y="650" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="64" y="697" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">OracleRepositorio</text>
+<polyline points="50,711 425,711" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="64" y="736" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ guardar_transaccion(…)</text>
+<rect x="50" y="850" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="64" y="897" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">SmsGateway</text>
+<polyline points="50,911 425,911" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="64" y="936" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ enviar(destinatario, mensaje)</text>
+<rect x="675" y="760" width="375" height="151" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="689" y="807" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Cuenta</text>
+<polyline points="675,821 1050,821" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="689" y="846" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ numero, titular, saldo</text>
+<text x="689" y="873" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ depositar(monto)</text>
+<text x="689" y="900" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ retirar(monto)</text>
+<rect x="440" y="1120" width="375" height="70" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="454" y="1167" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CuentaAhorros</text>
+<rect x="890" y="1120" width="375" height="124" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="904" y="1167" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CDT</text>
+<polyline points="890,1181 1265,1181" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="904" y="1206" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ vencimiento</text>
+<text x="904" y="1233" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ retirar(monto)</text>
+<rect x="1270" y="850" width="375" height="151" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="1284" y="897" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">TarjetaCredito</text>
+<polyline points="1270,911 1645,911" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="1284" y="936" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ retirar(), pagar_cuota()</text>
+<text x="1284" y="963" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ generar_extracto()</text>
+<text x="1284" y="990" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">depositar: vacío</text>
+<rect x="1270" y="1120" width="375" height="124" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="1284" y="1167" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CreditoVivienda</text>
+<polyline points="1270,1181 1645,1181" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="1284" y="1206" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ pagar_cuota(), extracto()</text>
+<text x="1284" y="1233" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">depositar / retirar: vacíos</text>
+<polyline points="675,178.5 455,398.5" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="461.3639610306789,382.23654403270945 455,398.5 471.26345596729055,392.1360389693211" fill="none" stroke="#64809e" stroke-width="2"/>
+<polyline points="862.5,227 862.5,350" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="855.5,334.0 862.5,350 869.5,334.0" fill="none" stroke="#64809e" stroke-width="2"/>
+<text x="70" y="1305" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="400" fill="#23344b">Main también construye CuentaAhorros, CDT, TarjetaCredito y CreditoVivienda.</text>
+<polyline points="267.5,447 237.5,650" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="232.91433674505961,633.1485403447568 237.5,650 246.76391694754696,635.1952763352722" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="245.5" y="642" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#dc2626">new</text>
+<polyline points="80,405 25,405 25,898 50,898" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="34.0,905.0 50,898 34.0,891.0" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="29" y="820" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#dc2626">new</text>
+<polyline points="267.5,447 862.5,760" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="845.0808224410996,758.746104800431 862.5,760 851.5986976065938,746.3558948212968" fill="none" stroke="#64809e" stroke-width="2"/>
+<polyline points="862.5,447 862.5,760" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="855.5,744.0 862.5,760 869.5,744.0" fill="none" stroke="#dc2626" stroke-width="2"/>
+<polyline points="627.5,1120 862.5,911" fill="none" stroke="#64809e" stroke-width="2"/>
+<polygon points="862.5,911 855.1961864845106,926.8636158592848 845.8923299993897,916.4023418209912" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="1077.5,1120 862.5,911" fill="none" stroke="#dc2626" stroke-width="2"/>
+<polygon points="862.5,911 878.8518748766435,917.1332037320308 869.0934441425911,927.1717808029459" fill="white" stroke="#dc2626" stroke-width="2"/>
+<polyline points="1457.5,850 1457.5,555" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="1457.5,555 1464.5,571.0 1450.5,571.0" fill="white" stroke="#dc2626" stroke-width="2"/>
+<polyline points="1645,1170 1690,1170 1690,440 1645,440" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="1645,440 1661.0,433.0 1661.0,447.0" fill="white" stroke="#dc2626" stroke-width="2"/>
+<text x="50" y="1392" font-family="DejaVu Sans,sans-serif" font-size="22" font-weight="400" fill="#23344b">Triángulo vacío: herencia (línea sólida) o implementación (discontinua).</text>
+<text x="50" y="1432" font-family="DejaVu Sans,sans-serif" font-size="22" font-weight="400" fill="#23344b">Flecha abierta discontinua: dependencia. “new” identifica construcción de proveedores.</text>
+<text x="50" y="1470" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="400" fill="#23344b">Fuente editable: uml_antes.md. Las operaciones omitidas se heredan o figuran en la interfaz.</text>
+<rect x="675" y="130" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="689" y="151" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«módulo»</text>
+<text x="689" y="177" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Main</text>
+<polyline points="675,191 1050,191" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="689" y="216" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ main()</text>
+<rect x="80" y="350" width="375" height="97" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="94" y="397" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">TransaccionService</text>
+<polyline points="80,411 455,411" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="94" y="436" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ transferir(origen, destino, …)</text>
+<rect x="675" y="350" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="689" y="397" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CobroCuotaManejo</text>
+<polyline points="675,411 1050,411" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="689" y="436" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ cobrar_mensual(cuentas)</text>
+<rect x="1270" y="350" width="375" height="205" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="1284" y="371" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="1284" y="397" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">ProductoBancario</text>
+<polyline points="1270,411 1645,411" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="1284" y="436" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ depositar(monto)</text>
+<text x="1284" y="463" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ retirar(monto)</text>
+<text x="1284" y="490" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular_intereses()</text>
+<text x="1284" y="517" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ pagar_cuota(monto)</text>
+<text x="1284" y="544" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ generar_extracto()</text>
+<rect x="50" y="650" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="64" y="697" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">OracleRepositorio</text>
+<polyline points="50,711 425,711" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="64" y="736" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ guardar_transaccion(…)</text>
+<rect x="50" y="850" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="64" y="897" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">SmsGateway</text>
+<polyline points="50,911 425,911" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="64" y="936" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ enviar(destinatario, mensaje)</text>
+<rect x="675" y="760" width="375" height="151" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="689" y="807" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Cuenta</text>
+<polyline points="675,821 1050,821" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="689" y="846" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ numero, titular, saldo</text>
+<text x="689" y="873" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ depositar(monto)</text>
+<text x="689" y="900" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ retirar(monto)</text>
+<rect x="440" y="1120" width="375" height="70" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="454" y="1167" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CuentaAhorros</text>
+<rect x="890" y="1120" width="375" height="124" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="904" y="1167" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CDT</text>
+<polyline points="890,1181 1265,1181" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="904" y="1206" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ vencimiento</text>
+<text x="904" y="1233" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ retirar(monto)</text>
+<rect x="1270" y="850" width="375" height="151" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="1284" y="897" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">TarjetaCredito</text>
+<polyline points="1270,911 1645,911" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="1284" y="936" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ retirar(), pagar_cuota()</text>
+<text x="1284" y="963" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ generar_extracto()</text>
+<text x="1284" y="990" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">depositar: vacío</text>
+<rect x="1270" y="1120" width="375" height="124" rx="9" fill="#fff1f2" stroke="#dc2626" stroke-width="2"/>
+<text x="1284" y="1167" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CreditoVivienda</text>
+<polyline points="1270,1181 1645,1181" fill="none" stroke="#dc2626" stroke-width="2"/>
+<text x="1284" y="1206" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ pagar_cuota(), extracto()</text>
+<text x="1284" y="1233" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">depositar / retirar: vacíos</text>
+</svg>

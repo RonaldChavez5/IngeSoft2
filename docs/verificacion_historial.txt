@@ -1,0 +1,6 @@
+PASS control-S: salida conservada
+PASS control-O: salida conservada
+PASS control-L: salida conservada
+PASS control-I: salida conservada
+PASS control-D: salida conservada
+PASS: cinco pruebas del bloque 3 intactas

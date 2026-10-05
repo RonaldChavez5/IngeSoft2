@@ -1,0 +1,406 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1900" height="3160" viewBox="0 0 1900 3160"><rect width="100%" height="100%" fill="#f6f8fc"/>
+<text x="45" y="62" font-family="DejaVu Sans,sans-serif" font-size="34" font-weight="700" fill="#12233f">Banco Andino · UML final</text>
+<text x="45" y="98" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="400" fill="#475569">R1–R5 · contratos por capacidades · tres vistas del mismo modelo</text>
+<text x="45" y="151" font-family="DejaVu Sans,sans-serif" font-size="26" font-weight="700" fill="#174a75">1. Cuentas y productos</text>
+<text x="45" y="182" font-family="DejaVu Sans,sans-serif" font-size="18" font-weight="400" fill="#52647c">CDT comparte datos de Cuenta; no hereda operaciones de CuentaOperable.</text>
+<rect x="515" y="225" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="272" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Cuenta</text>
+<polyline points="515,286 890,286" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="311" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ numero, titular, saldo</text>
+<text x="529" y="338" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ generar_extracto()</text>
+<rect x="515" y="465" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="512" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CuentaOperable</text>
+<polyline points="515,526 890,526" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="551" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ depositar(), retirar()</text>
+<text x="529" y="578" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ cobrar_cuota()</text>
+<rect x="45" y="465" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="512" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CDT</text>
+<polyline points="45,526 420,526" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="551" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ redimir(hoy)</text>
+<rect x="985" y="225" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="246" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="999" y="272" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">GeneraExtracto</text>
+<polyline points="985,286 1360,286" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="311" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ generar_extracto()</text>
+<rect x="1455" y="225" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="246" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«función»</text>
+<text x="1469" y="272" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">generar_extractos</text>
+<polyline points="1455,286 1830,286" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="311" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">(productos) → list[str]</text>
+<rect x="45" y="700" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="747" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CobroCuotaManejo</text>
+<polyline points="45,761 420,761" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="786" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ cobrar_mensual(cuentas)</text>
+<rect x="515" y="700" width="375" height="70" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="747" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CuentaAhorros</text>
+<rect x="985" y="700" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="747" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CuentaInfantil</text>
+<polyline points="985,761 1360,761" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="786" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ retirar(monto)</text>
+<text x="999" y="813" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">- reloj, retirado_hoy</text>
+<rect x="985" y="465" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="512" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">TarjetaCredito</text>
+<polyline points="985,526 1360,526" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="551" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular_intereses(), retirar()</text>
+<text x="999" y="578" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ pagar_cuota(), generar_extracto()</text>
+<rect x="1455" y="465" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="512" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CreditoVivienda</text>
+<polyline points="1455,526 1830,526" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="551" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular_intereses()</text>
+<text x="1469" y="578" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ pagar_cuota(), generar_extracto()</text>
+<rect x="515" y="910" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="931" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="529" y="957" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">DevengaIntereses</text>
+<polyline points="515,971 890,971" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="996" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular_intereses()</text>
+<rect x="985" y="910" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="931" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="999" y="957" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">RecibeCuotas</text>
+<polyline points="985,971 1360,971" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="996" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ pagar_cuota(monto)</text>
+<rect x="1455" y="910" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="931" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="1469" y="957" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">PermiteAvances</text>
+<polyline points="1455,971 1830,971" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="996" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ retirar(monto)</text>
+<polyline points="702.5,465 702.5,349" fill="none" stroke="#64809e" stroke-width="2"/>
+<polygon points="702.5,349 709.5,365.0 695.5,365.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="420,513.5 515,287.0" fill="none" stroke="#64809e" stroke-width="2"/>
+<polygon points="515,287.0 515.2666763705073,304.4622130245113 502.35628292198186,299.0472577149753" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="702.5,700 702.5,589" fill="none" stroke="#64809e" stroke-width="2"/>
+<polygon points="702.5,589 709.5,605.0 695.5,605.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="985,762.0 890,527.0" fill="none" stroke="#64809e" stroke-width="2"/>
+<polygon points="890,527.0 902.4863972678879,539.2102368227845 889.5068563480297,544.4572852797485" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="890,287.0 985,273.5" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="985,273.5 970.1439875771663,282.68144296353313 968.1743023103016,268.8206947893004" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="1455,273.5 1360,273.5" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="1376.0,266.5 1360,273.5 1376.0,280.5" fill="none" stroke="#64809e" stroke-width="2"/>
+<polyline points="1172.5,465 1172.5,322" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="1172.5,322 1179.5,338.0 1165.5,338.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="1455,527.0 1360,273.5" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="1360,273.5 1372.169571846639,286.02603373257034 1359.0599010365854,290.93892811898104" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="420,748.5 515,527.0" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="515.1265492079056,544.4637906909691 515,527.0 502.26002154511275,538.9454153954146" fill="none" stroke="#64809e" stroke-width="2"/>
+<polyline points="1360,527.0 1410,527.0 1410,850 702.5,850 702.5,910" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="702.5,910 695.5,894.0 709.5,894.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="1830,527.0 1860,527.0 1860,850 702.5,850 702.5,910" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="702.5,910 695.5,894.0 709.5,894.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="1360,527.0 1410,527.0 1410,875 1172.5,875 1172.5,910" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="1172.5,910 1165.5,894.0 1179.5,894.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="1830,527.0 1860,527.0 1860,875 1172.5,875 1172.5,910" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="1172.5,910 1165.5,894.0 1179.5,894.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="1360,527.0 1410,527.0 1410,900 1642.5,900 1642.5,910" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="1642.5,910 1635.5,894.0 1649.5,894.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<text x="45" y="1136" font-family="DejaVu Sans,sans-serif" font-size="26" font-weight="700" fill="#174a75">2. Coordinación y reglas</text>
+<text x="45" y="1167" font-family="DejaVu Sans,sans-serif" font-size="18" font-weight="400" fill="#52647c">Transferencia es una operación de dominio; los proveedores se reciben por inyección.</text>
+<rect x="515" y="1210" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="1257" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">TransaccionService</text>
+<polyline points="515,1271 890,1271" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="1296" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ transferir(origen, destino, …)</text>
+<text x="529" y="1323" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ ejecutar(operacion, monto, tipo)</text>
+<rect x="45" y="1440" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="1461" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="59" y="1487" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Operacion</text>
+<polyline points="45,1501 420,1501" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="1526" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ aplicar(monto, comisión, tipo)</text>
+<rect x="45" y="1640" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="1687" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Transferencia</text>
+<polyline points="45,1701 420,1701" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="1726" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ origen, destino: CuentaOperable</text>
+<text x="59" y="1753" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ aplicar(…) → Transaccion</text>
+<rect x="45" y="1900" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="1921" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«dato inmutable»</text>
+<text x="59" y="1947" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Transaccion</text>
+<polyline points="45,1961 420,1961" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="1986" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">origen, destino, titular, monto,</text>
+<text x="59" y="2013" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">comision, tipo, mensaje</text>
+<rect x="515" y="1440" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="1461" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="529" y="1487" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Validador</text>
+<polyline points="515,1501 890,1501" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="1526" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ validar(monto)</text>
+<rect x="515" y="1640" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="1687" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">ValidadorMonto</text>
+<polyline points="515,1701 890,1701" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="1726" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ validar(monto)</text>
+<rect x="985" y="1440" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="1461" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="999" y="1487" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CalculadorComision</text>
+<polyline points="985,1501 1360,1501" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="1526" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular(tipo, monto)</text>
+<rect x="985" y="1640" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="1687" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Comisiones</text>
+<polyline points="985,1701 1360,1701" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="1726" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">- políticas: dict</text>
+<text x="999" y="1753" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular(tipo, monto)</text>
+<rect x="1455" y="1440" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="1461" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="1469" y="1487" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">PoliticaComision</text>
+<polyline points="1455,1501 1830,1501" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="1526" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular(monto)</text>
+<rect x="1455" y="1740" width="375" height="151" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="1761" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«4 clases»</text>
+<text x="1469" y="1787" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Políticas concretas</text>
+<polyline points="1455,1801 1830,1801" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="1826" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">MismoBanco · OtroBanco</text>
+<text x="1469" y="1853" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">Internacional · ComisionLlave</text>
+<text x="1469" y="1880" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">Todas: + calcular(monto)</text>
+<polyline points="515,1272.0 420,1488.5" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="420.01903344023043,1471.035761175243 420,1488.5 432.83911284876484,1476.6612001766784" fill="none" stroke="#64809e" stroke-width="2"/>
+<polyline points="702.5,1334 702.5,1440" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="695.5,1424.0 702.5,1440 709.5,1424.0" fill="none" stroke="#64809e" stroke-width="2"/>
+<polyline points="890,1272.0 985,1488.5" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="972.1608871512351,1476.6612001766784 985,1488.5 984.9809665597695,1471.035761175243" fill="none" stroke="#64809e" stroke-width="2"/>
+<polyline points="232.5,1640 232.5,1537" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="232.5,1537 239.5,1553.0 225.5,1553.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="232.5,1764 232.5,1900" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="225.5,1884.0 232.5,1900 239.5,1884.0" fill="none" stroke="#64809e" stroke-width="2"/>
+<polyline points="702.5,1640 702.5,1537" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="702.5,1537 709.5,1553.0 695.5,1553.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="1172.5,1640 1172.5,1537" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="1172.5,1537 1179.5,1553.0 1165.5,1553.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="1360,1702.0 1455,1488.5" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polyline points="1454.8908773190358,1505.9639082750828 1455,1488.5 1442.0999873817111,1500.2724115816595" fill="none" stroke="#64809e" stroke-width="2"/>
+<polyline points="1642.5,1740 1642.5,1537" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="1642.5,1537 1649.5,1553.0 1635.5,1553.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<text x="520" y="1920" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="400" fill="#23344b">transferir crea Transferencia y delega en ejecutar.</text>
+<text x="520" y="1959" font-family="DejaVu Sans,sans-serif" font-size="19" font-weight="400" fill="#23344b">ejecutar valida → calcula → aplica → guarda → emite → notifica → observa.</text>
+<text x="520" y="1999" font-family="DejaVu Sans,sans-serif" font-size="19" font-weight="400" fill="#23344b">Las políticas se registran en Main. No hay selección por if/switch.</text>
+<text x="45" y="2136" font-family="DejaVu Sans,sans-serif" font-size="26" font-weight="700" fill="#174a75">3. Infraestructura y composición</text>
+<text x="45" y="2167" font-family="DejaVu Sans,sans-serif" font-size="18" font-weight="400" fill="#52647c">Main construye los proveedores y los entrega a TransaccionService por los cuatro contratos siguientes.</text>
+<rect x="45" y="2220" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="2241" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="59" y="2267" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">RepositorioTransacciones</text>
+<polyline points="45,2281 420,2281" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="2306" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ guardar_transaccion(…)</text>
+<rect x="515" y="2220" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="2241" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="529" y="2267" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Notificador</text>
+<polyline points="515,2281 890,2281" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="2306" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ enviar(destinatario, mensaje)</text>
+<rect x="985" y="2220" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="2241" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="999" y="2267" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">EmisorComprobante</text>
+<polyline points="985,2281 1360,2281" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="2306" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ emitir(transaccion)</text>
+<rect x="1455" y="2220" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="2241" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="1469" y="2267" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">ObservadorTransaccion</text>
+<polyline points="1455,2281 1830,2281" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="2306" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ registrar(transaccion)</text>
+<rect x="45" y="2450" width="375" height="151" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="2471" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«2 clases»</text>
+<text x="59" y="2497" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Repositorios</text>
+<polyline points="45,2511 420,2511" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="2536" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">PostgresRepositorio (activo)</text>
+<text x="59" y="2563" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">OracleRepositorio (conservado)</text>
+<text x="59" y="2590" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ guardar_transaccion(…)</text>
+<rect x="515" y="2450" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="2497" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">NotificadorMultiple</text>
+<polyline points="515,2511 890,2511" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="2536" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">- canales: Notificador[]</text>
+<text x="529" y="2563" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ enviar(…)</text>
+<rect x="515" y="2730" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="2751" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«2 clases»</text>
+<text x="529" y="2777" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Canales</text>
+<polyline points="515,2791 890,2791" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="2816" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">SmsGateway · PushGateway</text>
+<text x="529" y="2843" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ enviar(…)</text>
+<rect x="985" y="2450" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="2497" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">ComprobanteConsola</text>
+<polyline points="985,2511 1360,2511" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="2536" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ emitir(transaccion)</text>
+<rect x="1455" y="2450" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="2497" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">ObservadorMultiple</text>
+<polyline points="1455,2511 1830,2511" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="2536" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">- observadores: Observador[]</text>
+<text x="1469" y="2563" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ registrar(…)</text>
+<rect x="1455" y="2730" width="375" height="151" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="2751" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«2 clases»</text>
+<text x="1469" y="2777" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Observadores concretos</text>
+<polyline points="1455,2791 1830,2791" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="2816" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">AuditoriaConsola</text>
+<text x="1469" y="2843" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">AntifraudeConsola</text>
+<text x="1469" y="2870" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ registrar(…)</text>
+<polyline points="232.5,2450 232.5,2317" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="232.5,2317 239.5,2333.0 225.5,2333.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="702.5,2450 702.5,2317" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="702.5,2317 709.5,2333.0 695.5,2333.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="515,2792.0 475,2792.0 475,2268.5 515,2268.5" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="515,2268.5 499.0,2275.5 499.0,2261.5" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="1172.5,2450 1172.5,2317" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="1172.5,2317 1179.5,2333.0 1165.5,2333.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="1642.5,2450 1642.5,2317" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="1642.5,2317 1649.5,2333.0 1635.5,2333.0" fill="white" stroke="#64809e" stroke-width="2"/>
+<polyline points="1455,2805.5 1415,2805.5 1415,2268.5 1455,2268.5" fill="none" stroke="#64809e" stroke-width="2" stroke-dasharray="7 6"/>
+<polygon points="1455,2268.5 1439.0,2275.5 1439.0,2261.5" fill="white" stroke="#64809e" stroke-width="2"/>
+<text x="50" y="2992" font-family="DejaVu Sans,sans-serif" font-size="22" font-weight="400" fill="#23344b">Los compuestos almacenan colecciones del mismo contrato que implementan.</text>
+<text x="50" y="3032" font-family="DejaVu Sans,sans-serif" font-size="22" font-weight="400" fill="#23344b">Triángulo vacío: herencia o implementación. Flecha discontinua: dependencia.</text>
+<text x="50" y="3072" font-family="DejaVu Sans,sans-serif" font-size="22" font-weight="400" fill="#23344b">Fuente UML completa: uml_despues.md. R6 se mantiene separado en la rama demo-r6.</text>
+<rect x="515" y="225" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="272" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Cuenta</text>
+<polyline points="515,286 890,286" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="311" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ numero, titular, saldo</text>
+<text x="529" y="338" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ generar_extracto()</text>
+<rect x="515" y="465" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="512" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CuentaOperable</text>
+<polyline points="515,526 890,526" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="551" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ depositar(), retirar()</text>
+<text x="529" y="578" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ cobrar_cuota()</text>
+<rect x="45" y="465" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="512" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CDT</text>
+<polyline points="45,526 420,526" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="551" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ redimir(hoy)</text>
+<rect x="985" y="225" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="246" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="999" y="272" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">GeneraExtracto</text>
+<polyline points="985,286 1360,286" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="311" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ generar_extracto()</text>
+<rect x="1455" y="225" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="246" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«función»</text>
+<text x="1469" y="272" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">generar_extractos</text>
+<polyline points="1455,286 1830,286" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="311" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">(productos) → list[str]</text>
+<rect x="45" y="700" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="747" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CobroCuotaManejo</text>
+<polyline points="45,761 420,761" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="786" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ cobrar_mensual(cuentas)</text>
+<rect x="515" y="700" width="375" height="70" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="747" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CuentaAhorros</text>
+<rect x="985" y="700" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="747" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CuentaInfantil</text>
+<polyline points="985,761 1360,761" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="786" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ retirar(monto)</text>
+<text x="999" y="813" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">- reloj, retirado_hoy</text>
+<rect x="985" y="465" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="512" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">TarjetaCredito</text>
+<polyline points="985,526 1360,526" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="551" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular_intereses(), retirar()</text>
+<text x="999" y="578" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ pagar_cuota(), generar_extracto()</text>
+<rect x="1455" y="465" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="512" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CreditoVivienda</text>
+<polyline points="1455,526 1830,526" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="551" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular_intereses()</text>
+<text x="1469" y="578" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ pagar_cuota(), generar_extracto()</text>
+<rect x="515" y="910" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="931" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="529" y="957" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">DevengaIntereses</text>
+<polyline points="515,971 890,971" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="996" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular_intereses()</text>
+<rect x="985" y="910" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="931" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="999" y="957" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">RecibeCuotas</text>
+<polyline points="985,971 1360,971" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="996" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ pagar_cuota(monto)</text>
+<rect x="1455" y="910" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="931" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="1469" y="957" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">PermiteAvances</text>
+<polyline points="1455,971 1830,971" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="996" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ retirar(monto)</text>
+<rect x="515" y="1210" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="1257" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">TransaccionService</text>
+<polyline points="515,1271 890,1271" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="1296" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ transferir(origen, destino, …)</text>
+<text x="529" y="1323" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ ejecutar(operacion, monto, tipo)</text>
+<rect x="45" y="1440" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="1461" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="59" y="1487" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Operacion</text>
+<polyline points="45,1501 420,1501" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="1526" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ aplicar(monto, comisión, tipo)</text>
+<rect x="45" y="1640" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="1687" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Transferencia</text>
+<polyline points="45,1701 420,1701" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="1726" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ origen, destino: CuentaOperable</text>
+<text x="59" y="1753" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ aplicar(…) → Transaccion</text>
+<rect x="45" y="1900" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="1921" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«dato inmutable»</text>
+<text x="59" y="1947" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Transaccion</text>
+<polyline points="45,1961 420,1961" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="1986" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">origen, destino, titular, monto,</text>
+<text x="59" y="2013" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">comision, tipo, mensaje</text>
+<rect x="515" y="1440" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="1461" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="529" y="1487" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Validador</text>
+<polyline points="515,1501 890,1501" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="1526" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ validar(monto)</text>
+<rect x="515" y="1640" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="1687" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">ValidadorMonto</text>
+<polyline points="515,1701 890,1701" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="1726" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ validar(monto)</text>
+<rect x="985" y="1440" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="1461" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="999" y="1487" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">CalculadorComision</text>
+<polyline points="985,1501 1360,1501" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="1526" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular(tipo, monto)</text>
+<rect x="985" y="1640" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="1687" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Comisiones</text>
+<polyline points="985,1701 1360,1701" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="1726" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">- políticas: dict</text>
+<text x="999" y="1753" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular(tipo, monto)</text>
+<rect x="1455" y="1440" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="1461" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="1469" y="1487" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">PoliticaComision</text>
+<polyline points="1455,1501 1830,1501" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="1526" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ calcular(monto)</text>
+<rect x="1455" y="1740" width="375" height="151" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="1761" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«4 clases»</text>
+<text x="1469" y="1787" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Políticas concretas</text>
+<polyline points="1455,1801 1830,1801" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="1826" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">MismoBanco · OtroBanco</text>
+<text x="1469" y="1853" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">Internacional · ComisionLlave</text>
+<text x="1469" y="1880" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">Todas: + calcular(monto)</text>
+<rect x="45" y="2220" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="2241" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="59" y="2267" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">RepositorioTransacciones</text>
+<polyline points="45,2281 420,2281" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="2306" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ guardar_transaccion(…)</text>
+<rect x="515" y="2220" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="2241" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="529" y="2267" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Notificador</text>
+<polyline points="515,2281 890,2281" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="2306" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ enviar(destinatario, mensaje)</text>
+<rect x="985" y="2220" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="2241" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="999" y="2267" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">EmisorComprobante</text>
+<polyline points="985,2281 1360,2281" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="2306" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ emitir(transaccion)</text>
+<rect x="1455" y="2220" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="2241" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«interfaz»</text>
+<text x="1469" y="2267" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">ObservadorTransaccion</text>
+<polyline points="1455,2281 1830,2281" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="2306" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ registrar(transaccion)</text>
+<rect x="45" y="2450" width="375" height="151" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="2471" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«2 clases»</text>
+<text x="59" y="2497" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Repositorios</text>
+<polyline points="45,2511 420,2511" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="59" y="2536" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">PostgresRepositorio (activo)</text>
+<text x="59" y="2563" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">OracleRepositorio (conservado)</text>
+<text x="59" y="2590" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ guardar_transaccion(…)</text>
+<rect x="515" y="2450" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="2497" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">NotificadorMultiple</text>
+<polyline points="515,2511 890,2511" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="2536" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">- canales: Notificador[]</text>
+<text x="529" y="2563" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ enviar(…)</text>
+<rect x="515" y="2730" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="2751" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«2 clases»</text>
+<text x="529" y="2777" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Canales</text>
+<polyline points="515,2791 890,2791" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="529" y="2816" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">SmsGateway · PushGateway</text>
+<text x="529" y="2843" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ enviar(…)</text>
+<rect x="985" y="2450" width="375" height="97" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="2497" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">ComprobanteConsola</text>
+<polyline points="985,2511 1360,2511" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="999" y="2536" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ emitir(transaccion)</text>
+<rect x="1455" y="2450" width="375" height="124" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="2497" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">ObservadorMultiple</text>
+<polyline points="1455,2511 1830,2511" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="2536" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">- observadores: Observador[]</text>
+<text x="1469" y="2563" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ registrar(…)</text>
+<rect x="1455" y="2730" width="375" height="151" rx="9" fill="#ffffff" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="2751" font-family="DejaVu Sans,sans-serif" font-size="15" font-weight="400" fill="#58739b">«2 clases»</text>
+<text x="1469" y="2777" font-family="DejaVu Sans,sans-serif" font-size="20" font-weight="700" fill="#162a49">Observadores concretos</text>
+<polyline points="1455,2791 1830,2791" fill="none" stroke="#8aa0bd" stroke-width="2"/>
+<text x="1469" y="2816" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">AuditoriaConsola</text>
+<text x="1469" y="2843" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">AntifraudeConsola</text>
+<text x="1469" y="2870" font-family="DejaVu Sans,sans-serif" font-size="17" font-weight="400" fill="#23344b">+ registrar(…)</text>
+</svg>
