@@ -150,3 +150,17 @@ Es el tiempo del framework para la suite, no incluye el arranque del intérprete
 y puede redondearse a 0,000 s en estas pruebas pequeñas. No es un benchmark.
 Se cambiaron **0 líneas de TransaccionService** para escribirlas. En el bloque 1
 hubiéramos tenido que ejecutar los proveedores simulados o parchear internos.
+
+## Bloque 4. Requerimientos del negocio
+
+Las estimaciones se escribieron antes de implementar cada cambio. Se comparan
+archivos **de producción**: módulos `.py` en la raíz. Las pruebas y la documentación
+se contabilizan aparte, para no confundir diseño con evidencia. Los JSON de cada
+requerimiento enumeran nombres y permiten contrastarlos con `git show --stat`.
+
+### R1: resultado registrado
+
+Archivos de producción existentes modificados: 1.
+Archivos de producción nuevos: 1.
+Detalle verificable: `docs/cambios_req_1.json`. La suite completa pasó y
+las cinco pruebas originales no cambiaron: `docs/pruebas_req_1.txt`.

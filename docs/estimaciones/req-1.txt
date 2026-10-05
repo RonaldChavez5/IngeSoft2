@@ -1,0 +1,6 @@
+Estimación registrada antes de implementar este requerimiento.
+Archivos existentes a modificar en el código original:
+- transaccion_service.py
+- main.py
+Total estimado: 2
+No incluye archivos nuevos, pruebas ni documentación.

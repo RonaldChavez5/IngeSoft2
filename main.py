@@ -1,5 +1,6 @@
 from datetime import date, timedelta
 from comisiones import Comisiones
+from comision_llave import ComisionLlave
 from politicas_comision import MismoBanco, OtroBanco, Internacional
 from cuenta_ahorros import CuentaAhorros
 from cdt import CDT
@@ -19,7 +20,7 @@ def construir_servicio() -> TransaccionService:
     return TransaccionService(
         ValidadorMonto(),
         Comisiones({"MISMO_BANCO": MismoBanco(), "OTRO_BANCO": OtroBanco(),
-                    "INTERNACIONAL": Internacional()}),
+                    "INTERNACIONAL": Internacional(), "LLAVE": ComisionLlave()}),
         OracleRepositorio(), SmsGateway(), ComprobanteConsola(), AuditoriaConsola(),
     )
 
@@ -30,6 +31,7 @@ def main() -> None:
     cdt_ana = CDT("CDT-9", "Ana", 10_000_000, date.today() + timedelta(days=183))
     servicio = construir_servicio()
     servicio.transferir(ana, luis, 150_000.0, "OTRO_BANCO")
+    servicio.transferir(ana, luis, 50_000.0, "LLAVE")
     CobroCuotaManejo().cobrar_mensual([ana, luis])
     productos = [TarjetaCredito(3_000_000), CreditoVivienda(120_000_000)]
     for extracto in generar_extractos(productos):

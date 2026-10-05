@@ -1,0 +1,11 @@
+test_llave_descuenta_exactamente_50000 (tests.test_req_1.PruebasLlave.test_llave_descuenta_exactamente_50000) ... ok
+test_exito_se_guarda_y_notifica_una_sola_vez (tests.test_transferencias.PruebasTransferencias.test_exito_se_guarda_y_notifica_una_sola_vez) ... ok
+test_mismo_banco_sin_comision (tests.test_transferencias.PruebasTransferencias.test_mismo_banco_sin_comision) ... ok
+test_otro_banco_comision_7500 (tests.test_transferencias.PruebasTransferencias.test_otro_banco_comision_7500) ... ok
+test_saldo_insuficiente_sin_efectos_externos (tests.test_transferencias.PruebasTransferencias.test_saldo_insuficiente_sin_efectos_externos) ... ok
+test_tipo_desconocido_no_cambia_saldos (tests.test_transferencias.PruebasTransferencias.test_tipo_desconocido_no_cambia_saldos) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.001s
+
+OK

@@ -1,0 +1,14 @@
+{
+  "requerimiento": 1,
+  "produccion_modificados": [
+    "main.py"
+  ],
+  "produccion_nuevos": [
+    "comision_llave.py"
+  ],
+  "pruebas_modificadas": [],
+  "pruebas_nuevas": [
+    "tests/test_req_1.py"
+  ],
+  "pruebas_bloque_3_sin_cambios": true
+}
