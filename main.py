@@ -17,6 +17,8 @@ from push_gateway import PushGateway
 from notificador_multiple import NotificadorMultiple
 from comprobante_consola import ComprobanteConsola
 from auditoria_consola import AuditoriaConsola
+from antifraude_consola import AntifraudeConsola
+from observador_multiple import ObservadorMultiple
 
 
 def construir_servicio() -> TransaccionService:
@@ -25,7 +27,7 @@ def construir_servicio() -> TransaccionService:
         Comisiones({"MISMO_BANCO": MismoBanco(), "OTRO_BANCO": OtroBanco(),
                     "INTERNACIONAL": Internacional(), "LLAVE": ComisionLlave()}),
         OracleRepositorio(), NotificadorMultiple([SmsGateway(), PushGateway()]),
-        ComprobanteConsola(), AuditoriaConsola(),
+        ComprobanteConsola(), ObservadorMultiple([AuditoriaConsola(), AntifraudeConsola()]),
     )
 
 

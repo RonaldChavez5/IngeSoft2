@@ -1,0 +1,15 @@
+{
+  "requerimiento": 4,
+  "produccion_modificados": [
+    "main.py"
+  ],
+  "produccion_nuevos": [
+    "antifraude_consola.py",
+    "observador_multiple.py"
+  ],
+  "pruebas_modificadas": [],
+  "pruebas_nuevas": [
+    "tests/test_req_4.py"
+  ],
+  "pruebas_bloque_3_sin_cambios": true
+}
