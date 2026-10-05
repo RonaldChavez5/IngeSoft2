@@ -85,3 +85,11 @@ El método `ejecutar` centraliza el orden de los pasos y `transferir` es su entr
 para transferencias. Extraer la orquestación no elimina pasos: permite compartir
 el mismo flujo con otras operaciones sin duplicarlo.
 La comparación automática pasó: `docs/salidas/control-S-comparacion.txt`.
+
+### Control O
+
+Un nuevo tipo necesita una política nueva y su registro en `main.py`.
+Ese es el único archivo existente que debe cambiar para conectar el tipo nuevo.
+El servicio y el selector `Comisiones` permanecen intactos. El diccionario
+sustituye la decisión por tipos; un tipo desconocido todavía se rechaza.
+La comparación pasó: `docs/salidas/control-O-comparacion.txt`.

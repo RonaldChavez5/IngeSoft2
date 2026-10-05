@@ -9,9 +9,9 @@ from auditoria_consola import AuditoriaConsola
 
 
 class TransaccionService:
-    def __init__(self):
+    def __init__(self, comisiones: Comisiones):
         self.validador = ValidadorMonto()
-        self.comisiones = Comisiones()
+        self.comisiones = comisiones
         self.repositorio = OracleRepositorio()
         self.notificador = SmsGateway()
         self.comprobante = ComprobanteConsola()
