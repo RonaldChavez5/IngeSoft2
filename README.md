@@ -133,3 +133,20 @@ de Java. Esta distinción se mantiene en las métricas finales.
 Ahora se puede inyectar un repositorio en memoria y un notificador espía desde
 el constructor. No hace falta modificar el servicio ni parchear sus detalles.
 La comparación pasó: `docs/salidas/control-D-comparacion.txt`.
+
+## Bloque 3. Pruebas unitarias
+
+```bash
+python -m unittest discover -v
+```
+
+Las cinco pruebas obligatorias usan `RepositorioMemoria`, `NotificadorEspia`,
+`ComprobanteEspia` y `ObservadorEspia`. No importan Oracle ni SMS.
+Cubren comisión cero, comisión de $7.500, rechazo por saldo, efectos exactamente
+una vez y tipo desconocido. Además de la excepción, verifican saldo y efectos.
+
+El tiempo medido está en [pruebas_bloque_3.txt](docs/pruebas_bloque_3.txt).
+Es el tiempo del framework para la suite, no incluye el arranque del intérprete
+y puede redondearse a 0,000 s en estas pruebas pequeñas. No es un benchmark.
+Se cambiaron **0 líneas de TransaccionService** para escribirlas. En el bloque 1
+hubiéramos tenido que ejecutar los proveedores simulados o parchear internos.
