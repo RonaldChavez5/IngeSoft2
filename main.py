@@ -13,6 +13,8 @@ from generador_extractos import generar_extractos
 from validador_monto import ValidadorMonto
 from oracle_repositorio import OracleRepositorio
 from sms_gateway import SmsGateway
+from push_gateway import PushGateway
+from notificador_multiple import NotificadorMultiple
 from comprobante_consola import ComprobanteConsola
 from auditoria_consola import AuditoriaConsola
 
@@ -22,7 +24,8 @@ def construir_servicio() -> TransaccionService:
         ValidadorMonto(),
         Comisiones({"MISMO_BANCO": MismoBanco(), "OTRO_BANCO": OtroBanco(),
                     "INTERNACIONAL": Internacional(), "LLAVE": ComisionLlave()}),
-        OracleRepositorio(), SmsGateway(), ComprobanteConsola(), AuditoriaConsola(),
+        OracleRepositorio(), NotificadorMultiple([SmsGateway(), PushGateway()]),
+        ComprobanteConsola(), AuditoriaConsola(),
     )
 
 

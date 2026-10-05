@@ -1,0 +1,15 @@
+{
+  "requerimiento": 3,
+  "produccion_modificados": [
+    "main.py"
+  ],
+  "produccion_nuevos": [
+    "notificador_multiple.py",
+    "push_gateway.py"
+  ],
+  "pruebas_modificadas": [],
+  "pruebas_nuevas": [
+    "tests/test_req_3.py"
+  ],
+  "pruebas_bloque_3_sin_cambios": true
+}

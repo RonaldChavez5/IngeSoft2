@@ -1,0 +1,42 @@
+[ORACLE] Conectando a jdbc:oracle:thin:@prod-db:1521/BANCO...
+[ORACLE] INSERT INTO transacciones VALUES ('001-1', '001-2', 150000.0, 7500.0)
+===== BANCO ANDINO - COMPROBANTE =====
+Origen: 001-1
+Destino: 001-2
+Monto:    $150000.0
+Comisión: $7500.0
+======================================
+[SMS] Conectando al proveedor de mensajería...
+[SMS] Para Ana: Transferiste $150000.0 a la cuenta 001-2
+[PUSH] Para Ana: Transferiste $150000.0 a la cuenta 001-2
+[AUDITORIA] 2026-10-04T20:32:29.459422 OTRO_BANCO 001-1 -> 001-2 $150000.0
+[ORACLE] Conectando a jdbc:oracle:thin:@prod-db:1521/BANCO...
+[ORACLE] INSERT INTO transacciones VALUES ('001-1', '001-2', 50000.0, 0.0)
+===== BANCO ANDINO - COMPROBANTE =====
+Origen: 001-1
+Destino: 001-2
+Monto:    $50000.0
+Comisión: $0.0
+======================================
+[SMS] Conectando al proveedor de mensajería...
+[SMS] Para Ana: Transferiste $50000.0 a la cuenta 001-2
+[PUSH] Para Ana: Transferiste $50000.0 a la cuenta 001-2
+[AUDITORIA] 2026-10-04T20:32:29.459452 LLAVE 001-1 -> 001-2 $50000.0
+Cuota de manejo cobrada a 001-1
+Cuota de manejo cobrada a 001-2
+[RECHAZADA] Supera el límite diario de retiros de $200.000; saldo sin cambio: $350000.0
+[ORACLE] Conectando a jdbc:oracle:thin:@prod-db:1521/BANCO...
+[ORACLE] INSERT INTO transacciones VALUES ('INF-1', '001-2', 25000.0, 0.0)
+===== BANCO ANDINO - COMPROBANTE =====
+Origen: INF-1
+Destino: 001-2
+Monto:    $25000.0
+Comisión: $0.0
+======================================
+[SMS] Conectando al proveedor de mensajería...
+[SMS] Para Sara: Transferiste $25000.0 a la cuenta 001-2
+[PUSH] Para Sara: Transferiste $25000.0 a la cuenta 001-2
+[AUDITORIA] 2026-10-04T20:32:29.459484 MISMO_BANCO INF-1 -> 001-2 $25000.0
+Cuota de manejo cobrada a INF-1
+Tarjeta - deuda: $0.0
+Crédito vivienda - pendiente: $120000000.0
