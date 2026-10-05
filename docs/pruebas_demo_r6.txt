@@ -1,3 +1,8 @@
+test_cdt_no_promete_operaciones_de_cuenta_disponible (tests.test_contratos_dominio.PruebasContratosDominio.test_cdt_no_promete_operaciones_de_cuenta_disponible) ... ok
+test_extractos_de_cuenta_tarjeta_credito_y_cdt (tests.test_contratos_dominio.PruebasContratosDominio.test_extractos_de_cuenta_tarjeta_credito_y_cdt) ... ok
+test_internacional_conserva_formula_original (tests.test_contratos_dominio.PruebasContratosDominio.test_internacional_conserva_formula_original) ... ok
+test_montos_invalidos_no_generan_efectos (tests.test_contratos_dominio.PruebasContratosDominio.test_montos_invalidos_no_generan_efectos) ... ok
+test_tope_exacto_cinco_millones_admitido (tests.test_contratos_dominio.PruebasContratosDominio.test_tope_exacto_cinco_millones_admitido) ... ok
 test_llave_descuenta_exactamente_50000 (tests.test_req_1.PruebasLlave.test_llave_descuenta_exactamente_50000) ... ok
 test_150000_mas_60000_rechazado_saldo_intacto (tests.test_req_2.PruebasCuentaInfantil.test_150000_mas_60000_rechazado_saldo_intacto) ... ok
 test_cuota_se_cobra_aun_con_limite_de_retiros_agotado (tests.test_req_2.PruebasCuentaInfantil.test_cuota_se_cobra_aun_con_limite_de_retiros_agotado) ... ok
@@ -23,6 +28,6 @@ test_saldo_insuficiente_sin_efectos_externos (tests.test_transferencias.PruebasT
 test_tipo_desconocido_no_cambia_saldos (tests.test_transferencias.PruebasTransferencias.test_tipo_desconocido_no_cambia_saldos) ... ok
 
 ----------------------------------------------------------------------
-Ran 23 tests in 0.002s
+Ran 28 tests in 0.002s
 
 OK

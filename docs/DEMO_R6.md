@@ -24,3 +24,5 @@ git switch main
 
 Para realizar la revisión válida se debe trabajar en una rama del repositorio
 de la otra pareja, hacer su implementación y registrar allí `revision-cruzada`.
+
+Tras integrar las pruebas de dominio del cierre: 28 pruebas pasando en esta rama.
