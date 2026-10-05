@@ -323,9 +323,6 @@ lado a lado en un navegador local.
 | Archivos versionados, incluidas pruebas y documentación | 13 | 87 |
 | Archivos existentes modificados en el bloque 4 | No aplica | 5 intervenciones; 1 archivo distinto |
 
-Al reducir `transferir` no eliminé la lógica: la distribuí entre `ejecutar`
-y sus colaboradores. Por eso incluí también la suma de ambos métodos.
-Guardé el inventario en [inventario_versionado.txt](docs/inventario_versionado.txt).
 
 ### a) ¿Es un problema tener más archivos?
 
