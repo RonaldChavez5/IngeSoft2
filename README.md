@@ -194,3 +194,10 @@ Archivos de producción existentes modificados: 1.
 Archivos de producción nuevos: 2.
 Detalle verificable: `docs/cambios_req_4.json`. La suite completa pasó y
 las cinco pruebas originales no cambiaron: `docs/pruebas_req_4.txt`.
+
+### R5: resultado registrado
+
+Archivos de producción existentes modificados: 1.
+Archivos de producción nuevos: 1.
+Detalle verificable: `docs/cambios_req_5.json`. La suite completa pasó y
+las cinco pruebas originales no cambiaron: `docs/pruebas_req_5.txt`.

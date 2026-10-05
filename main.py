@@ -11,7 +11,7 @@ from tarjeta_credito import TarjetaCredito
 from credito_vivienda import CreditoVivienda
 from generador_extractos import generar_extractos
 from validador_monto import ValidadorMonto
-from oracle_repositorio import OracleRepositorio
+from postgres_repositorio import PostgresRepositorio
 from sms_gateway import SmsGateway
 from push_gateway import PushGateway
 from notificador_multiple import NotificadorMultiple
@@ -26,7 +26,7 @@ def construir_servicio() -> TransaccionService:
         ValidadorMonto(),
         Comisiones({"MISMO_BANCO": MismoBanco(), "OTRO_BANCO": OtroBanco(),
                     "INTERNACIONAL": Internacional(), "LLAVE": ComisionLlave()}),
-        OracleRepositorio(), NotificadorMultiple([SmsGateway(), PushGateway()]),
+        PostgresRepositorio(), NotificadorMultiple([SmsGateway(), PushGateway()]),
         ComprobanteConsola(), ObservadorMultiple([AuditoriaConsola(), AntifraudeConsola()]),
     )
 

@@ -1,0 +1,14 @@
+{
+  "requerimiento": 5,
+  "produccion_modificados": [
+    "main.py"
+  ],
+  "produccion_nuevos": [
+    "postgres_repositorio.py"
+  ],
+  "pruebas_modificadas": [],
+  "pruebas_nuevas": [
+    "tests/test_req_5.py"
+  ],
+  "pruebas_bloque_3_sin_cambios": true
+}
