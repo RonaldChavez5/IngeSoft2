@@ -7,6 +7,7 @@ from transaccion_service import TransaccionService
 from cobro_cuota_manejo import CobroCuotaManejo
 from tarjeta_credito import TarjetaCredito
 from credito_vivienda import CreditoVivienda
+from generador_extractos import generar_extractos
 
 
 def main() -> None:
@@ -20,8 +21,8 @@ def main() -> None:
     servicio.transferir(ana, luis, 150_000.0, "OTRO_BANCO")
     CobroCuotaManejo().cobrar_mensual([ana, luis])
     productos = [TarjetaCredito(3_000_000), CreditoVivienda(120_000_000)]
-    for producto in productos:
-        print(producto.generar_extracto())
+    for extracto in generar_extractos(productos):
+        print(extracto)
 
 
 if __name__ == "__main__":

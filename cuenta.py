@@ -5,3 +5,6 @@ class Cuenta:
         self.numero = numero
         self.titular = titular
         self.saldo = float(saldo_inicial)
+
+    def generar_extracto(self) -> str:
+        return f"Cuenta {self.numero} - saldo: ${self.saldo}"

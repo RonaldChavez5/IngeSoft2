@@ -109,3 +109,13 @@ en medio del lote. Un `try/except` que ignore CDT ocultaría el contrato incorre
 y no impediría volver a pasar uno a una transferencia.
 
 La comparación pasó: `docs/salidas/control-L-comparacion.txt`.
+
+### Control I
+
+`GeneraExtracto` permite generar extractos de cuentas, tarjetas y créditos con
+el mismo generador. Solo pide `generar_extracto`; no necesita conocer depósitos,
+avances ni pagos. En Python los protocolos se cumplen de forma estructural:
+la clase no tiene que heredar explícitamente de la interfaz.
+`DevengaIntereses`, `RecibeCuotas` y `PermiteAvances` nombran las capacidades
+restantes; ningún producto conserva operaciones vacías por “no aplica”.
+La comparación pasó: `docs/salidas/control-I-comparacion.txt`.

@@ -1,13 +1,7 @@
-from producto_bancario import ProductoBancario
-
-
-class TarjetaCredito(ProductoBancario):
+class TarjetaCredito:
     def __init__(self, cupo: float):
         self.deuda = 0.0
         self.cupo = float(cupo)
-
-    def depositar(self, monto: float) -> None:
-        pass  # no aplica
 
     def retirar(self, monto: float) -> None:
         if self.deuda + monto > self.cupo:

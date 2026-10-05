@@ -1,14 +1,17 @@
-from abc import ABC, abstractmethod
+from typing import Protocol
 
 
-class ProductoBancario(ABC):
-    @abstractmethod
-    def depositar(self, monto: float) -> None: ...
-    @abstractmethod
-    def retirar(self, monto: float) -> None: ...
-    @abstractmethod
-    def calcular_intereses(self) -> float: ...
-    @abstractmethod
-    def pagar_cuota(self, monto: float) -> None: ...
-    @abstractmethod
+class GeneraExtracto(Protocol):
     def generar_extracto(self) -> str: ...
+
+
+class DevengaIntereses(Protocol):
+    def calcular_intereses(self) -> float: ...
+
+
+class RecibeCuotas(Protocol):
+    def pagar_cuota(self, monto: float) -> None: ...
+
+
+class PermiteAvances(Protocol):
+    def retirar(self, monto: float) -> None: ...
